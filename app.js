@@ -6,6 +6,8 @@ const server = require('./server.js')
 const port = (process.env.PORT || 3000);
 const calcServer = process.env.CALC_SERVER || 'localhost';
 const calcPort = process.env.CALC_PORT || 9292;
+const calcPath = process.env.CALC_PATH || '/serve_v22';
+
 const app = server.app();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -25,7 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
 var calcProxy = expressHttpProxy(calcServer, {
   port: calcPort,
   forwardPath: function(req, res) {
-    return url.parse(req.url).path;
+    return calcPath + url.parse(req.url).path;
   }
 });
 

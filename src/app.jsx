@@ -45,7 +45,7 @@ export default class App extends Component {
     this.setState({isFetching: true});
     var encoded = LeverUtils.encode(levers || this.state.levers);
     // console.log('fetching', encoded);
-    var apiUrl = `/calc/serve_v22/${encoded}`;
+    var apiUrl = `/calc/${encoded}`;
     fetch(apiUrl)
       .then((response) => {
         return response.json();
