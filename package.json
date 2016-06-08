@@ -4,6 +4,7 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node ./app.js",
+    "production": "export NODE_ENV=production; node ./app.js",
     "build": "webpack --config ./webpack.prod.config.js --progress --colors",
     "lint": "eslint src",
     "clean": "rm -rf dist"
