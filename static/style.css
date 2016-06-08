@@ -1,0 +1,49 @@
+body {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.app {
+
+}
+
+.app.fetching .results {
+    opacity: 0.5;
+}
+
+.control-panel {
+    width: 300px;    
+}
+
+.lever-group {
+    background: #eee;
+    margin: 0.5em;
+    padding: 0.5em;
+    overflow: auto;
+}
+
+.lever-group-title {
+    margin: 0;
+}
+
+.lever {
+    clear: both;
+}
+
+.lever input {
+    float: right;
+}
+
+.results {
+    right: 0;
+    top: 0;
+    padding: 0.5em;
+    font-size: 24pt;
+    position: fixed;
+    text-align: right;
+    max-width: 500px;
+}
+
+.results-title {
+    font-weight: bold;
+}
