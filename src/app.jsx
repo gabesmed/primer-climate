@@ -8,7 +8,6 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-    this.server = 'localhost:9292';
     this.state = {
       isFetching: false,
       isFetchQueued: false,
@@ -46,7 +45,7 @@ export default class App extends Component {
     this.setState({isFetching: true});
     var encoded = LeverUtils.encode(levers || this.state.levers);
     // console.log('fetching', encoded);
-    var apiUrl = `http://${this.server}/serve_v22/${encoded}`;
+    var apiUrl = `/calc/serve_v22/${encoded}`;
     fetch(apiUrl)
       .then((response) => {
         return response.json();

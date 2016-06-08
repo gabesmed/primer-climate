@@ -1,6 +1,12 @@
-const Server = require('./server.js')
-const port = (process.env.PORT || 3000)
-const app = Server.app()
+const expressHttpProxy = require('express-http-proxy');
+const url = require('url');
+
+const server = require('./server.js')
+
+const port = (process.env.PORT || 3000);
+const calcServer = process.env.CALC_SERVER || 'localhost';
+const calcPort = process.env.CALC_PORT || 9292;
+const app = server.app();
 
 if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
@@ -15,6 +21,15 @@ if (process.env.NODE_ENV !== 'production') {
     publicPath: config.output.publicPath
   }));
 }
+
+var calcProxy = expressHttpProxy(calcServer, {
+  port: calcPort,
+  forwardPath: function(req, res) {
+    return url.parse(req.url).path;
+  }
+});
+
+app.use('/calc', calcProxy);
 
 app.listen(port);
 console.log(`Listening at http://localhost:${port}`);
