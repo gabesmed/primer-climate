@@ -1,17 +1,20 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import Constants from './constants';
-import Levers from './levers.jsx';
+import LeversTable from './levers-table.jsx';
 import LeverUtils from './lever-utils';
 import ScenarioSelect from './scenario-select.jsx';
 
 export default class App extends Component {
 
   constructor(props) {
+    var rcp85 = _.find(Constants.SCENARIOS, ['title', 'RCP 8.5']);
     super(props);
     this.state = {
       isFetching: false,
       isFetchQueued: false,
-      levers: LeverUtils.decode(Constants.SCENARIOS[0].encoded),
+      player: Constants.STARTING_PLAYER,
+      levers: LeverUtils.decode(rcp85.encoded),
       result: null
     };
   }
@@ -20,8 +23,15 @@ export default class App extends Component {
     this.fetchResults();  
   }
 
+  onSpendMoney(amount) {
+    this.setState({
+      player: Object.assign({}, this.state.player, {
+        money: this.state.player.money - amount
+      })
+    });
+  }
+
   onSetLever(key, newSetting) {
-    // console.log(key, newSetting);
     var newLever = {};
     newLever[key] = newSetting;
     this.setLevers(Object.assign({}, this.state.levers, newLever));
@@ -92,17 +102,23 @@ export default class App extends Component {
     var appClass = 'app' + (this.state.isFetching ? ' fetching' : '');
     return (
       <div className={appClass}>
-        <div className='results'>
-          {results}
+        <div className='right-panel'>
+          <div className='player'>
+            Money: ${this.state.player.money}
+          </div>
+          <div className='results'>
+            {results}
+          </div>
         </div>
         <div className='control-panel'>
+          <LeversTable
+              levers={this.state.levers}
+              onSetLever={this.onSetLever.bind(this)}
+              onSpendMoney={this.onSpendMoney.bind(this)} />
           <ScenarioSelect
             levers={this.state.levers}
             scenarios={Constants.SCENARIOS}
             onSetScenario={this.onSetScenario.bind(this)} />
-          <Levers
-              levers={this.state.levers}
-              onSetLever={this.onSetLever.bind(this)} />
         </div>
       </div>
     );

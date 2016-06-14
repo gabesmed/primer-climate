@@ -11,30 +11,12 @@ body {
     opacity: 0.5;
 }
 
-.control-panel {
-    width: 300px;    
+.levers-table {
+    font-size: 12px;
+    line-height: 1.2;
 }
 
-.lever-group {
-    background: #eee;
-    margin: 0.5em;
-    padding: 0.5em;
-    overflow: auto;
-}
-
-.lever-group-title {
-    margin: 0;
-}
-
-.lever {
-    clear: both;
-}
-
-.lever input {
-    float: right;
-}
-
-.results {
+.right-panel {
     right: 0;
     top: 0;
     padding: 0.5em;
@@ -44,6 +26,10 @@ body {
     max-width: 500px;
 }
 
-.results-title {
+.right-panel .player {
+    margin-bottom: 0.5em;
+}
+
+.right-panel .results-title {
     font-weight: bold;
 }

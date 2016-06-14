@@ -16,13 +16,8 @@ function encodeNumber(number) {
 
 function encode(levers) {
   var array = new Array(59).fill(1);
-  Constants.LEVER_SECTIONS.forEach(function(section) {
-    section.groups.forEach(function(group) {
-      group.levers.forEach(function(lever) {
-        var number = levers[section.key + '.' + group.key + '.' + lever.key];
-        array[lever.pos - 1] = encodeNumber(number);
-      });
-    });
+  Constants.LEVERS.forEach(function(lever) {
+    array[lever[0] - 1] = encodeNumber(levers[lever[1]]);
   });
   return array.join('');
 }
@@ -37,17 +32,12 @@ function decodeDigit(digit) {
 
 function decode(encoded) {
   var levers = {};
-  Constants.LEVER_SECTIONS.forEach(function(section) {
-    section.groups.forEach(function(group) {
-      group.levers.forEach(function(lever) {
-        var digit = encoded[lever.pos - 1];
-        if (!digit) {
-          throw new Error('Digit at pos ' + lever.pos + ' not found');
-        }
-        levers[section.key + '.' + group.key + '.' + lever.key] =
-          decodeDigit(digit);
-      })
-    });
+  Constants.LEVERS.forEach(function(lever) {
+    var digit = encoded[lever[0] - 1];
+    if (!digit) {
+      throw new Error('Digit at pos ' + lever.pos + ' not found');
+    }
+    levers[lever[1]] = decodeDigit(digit);
   });
   return levers;
 }

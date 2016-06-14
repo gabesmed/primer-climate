@@ -1,175 +1,59 @@
-/**
- * Default value possibilities are 1.0-4.0.
- * possible flags are 'max', and 'integer'
- */
-const LEVER_SECTIONS = [{
-  title: 'Demographics',
-  key: 'demographics',
-  groups: [{
-    title: 'Demographics',
-    key: 'demographics',
-    levers: [
-      {title: 'Global population', key: 'globalpop', pos: 1, max: 3},
-      {title: 'Urbanization', key: 'urbanization', pos: 2, max: 3}
-    ]
-  }]
-}, {
-  title: 'Lifestyle',
-  key: 'lifestyle',
-  groups: [{
-    title: 'Travel',
-    key: 'travel',
-    levers: [
-      {title: 'Passenger distance', key: 'passengerdist', pos: 3},
-      {title: 'Freight distance', key: 'freightdist', pos: 4},
-      {title: 'Mode', key: 'mode', pos: 5},
-      {title: 'Occupancy & load', key: 'occupancy', pos: 6},
-      {title: 'Car own or hire', key: 'carownership', pos: 7}
-    ]
-  }, {
-    title: 'Homes',
-    key: 'homes',
-    levers: [
-      {title: 'Building size', key: 'size', pos: 10},
-      {title: 'Temperature & hot water use', key: 'temp', pos: 11},
-      {title: 'Lighting & appliance use', key: 'appliances', pos: 12},
-      {title: 'Product lifespan & demant', key: 'products', pos: 16}
-    ]
-  }, {
-    title: 'Diet',
-    key: 'diet',
-    levers: [
-      {title: 'Calories consumed', key: 'calories', pos: 33},
-      {title: 'Quantity of meat', key: 'meatamount', pos: 34},
-      {title: 'Type of meat', key: 'meattype', pos: 35}
-    ]
-  }]
-}, {
-  title: 'Technology',
-  key: 'tech',
-  groups: [{
-    title: 'Transport',
-    key: 'transport',
-    levers: [
-      {title: 'Transport efficiency', key: 'efficiency', pos: 8},
-      {title: 'Electric & hydrogen', key: 'electric', pos: 9}
-    ]
-  }, {
-    title: 'Buildings',
-    key: 'buildings',
-    levers: [
-      {title: 'Building insulation', key: 'insulation', pos: 13},
-      {title: 'Temperature & cooking tech', key: 'temp', pos: 14},
-      {title: 'Appliance efficiency', key: 'appliances', pos: 15}
-    ]
-  }, {
-    title: 'Manufacturing',
-    key: 'manufacturing',
-    levers: [
-      {title: 'Design, materials & recycling', key: 'materials', pos: 17},
-      {title: 'Iron, steel & aluminum', key: 'metals', pos: 18},
-      {title: 'Chemicals', key: 'chemicals', pos: 19},
-      {title: 'Paper & other', key: 'other', pos: 20},
-      {title: 'Cement', key: 'cement', pos: 21}
-    ]
-  }, {
-    title: 'Carbon capture and storage',
-    key: 'ccs',
-    levers: [
-      {title: 'CCS (manufacturing)', key: 'manufacturing', pos: 22},
-      {title: 'CCS (electricity)', key: 'electricity', pos: 25}
-    ]
-  }]
-}, {
-  title: 'Fuels',
-  key: 'fuels',
-  groups: [{
-    title: 'Fossil fuels',
-    key: 'fossil',
-    levers: [
-      {title: 'Coal, oil & gas', key: 'fossil', pos: 23},
-      {title: 'Fossil fuel efficiency', key: 'efficiency', pos: 24}
-    ]
-  }, {
-    title: 'Nuclear',
-    key: 'nuclear',
-    levers: [
-      {title: 'Nuclear', key: 'nuclear', pos: 26}
-    ]
-  }, {
-    title: 'Renewables',
-    key: 'renewables',
-    levers: [
-      {title: 'Wind', key: 'wind', pos: 27},
-      {title: 'Hydroelectric', key: 'hydro', pos: 28},
-      {title: 'Marine', key: 'marine', pos: 29},
-      {title: 'Solar', key: 'solar', pos: 30},
-      {title: 'Geothermal', key: 'geothermal', pos: 31},
-      {title: 'Storage & demand shifting', key: 'storage', pos: 32}
-    ]
-  }, {
-    title: 'Bioenergy',
-    key: 'bio',
-    levers: [
-      {title: 'Bioenergy yields', key: 'yields', pos: 40},
-      {title: 'Solid or liquid', key: 'phase', pos: 41}
-    ]
-  }]
-}, {
-  title: 'Land',
-  key: 'land',
-  groups: [{
-    title: 'Food yields',
-    key: 'food',
-    levers: [
-      {title: 'Crop yields', key: 'crops', pos: 36},
-      {title: 'Livestock (grains/residues fed)', key: 'livegrains', pos: 38},
-      {title: 'Livestock (pasture fed)', key: 'livepasture', pos: 39},
-      {title: 'Wastes & residues', key: 'waste', pos: 48}
-    ]
-  }, {
-    title: 'Land use',
-    key: 'land',
-    levers: [
-      {title: 'Surplus land (forest & bioenergy)', key: 'surplus', pos: 42},
-      {title: 'Land-use efficiency', key: 'efficiency', pos: 37}
-    ]
-  }]
-}, {
-  title: 'Future',
-  key: 'future',
-  groups: [{
-    title: 'Speculative greenhouse gas removal',
-    key: 'ggr',
-    levers: [
-      {title: 'Biochar', key: 'biochar', pos: 43},
-      {title: 'Direct air capture', key: 'aircapture', pos: 44},
-      {title: 'Ocean fertilization', key: 'ocean', pos: 45},
-      {title: 'Enhanced weathering (oceanic)', key: 'weatheringocean',
-        pos: 46},
-      {title: 'Enhanced weathering (terrestrial)', key: 'weatheringearth',
-        pos: 47}
-    ]
-  }, {
-    title: 'Emissions after 2050',
-    key: 'trajectory',
-    levers: [
-      {title: 'Emissions trajectory', key: 'emissions', pos: 49}
-    ]
-  }]
-}, {
-  title: 'Basic physics',
-  key: 'physics',
-  groups: [{
-    title: 'Basic physics',
-    key: 'physics',
-    levers: [
-      {title: 'Atmospheric CO2 fraction', key: 'co2', pos: 50},
-      {title: 'Confidence in climate models', key: 'confidence', pos: 51,
-        max: 2, integer: true}
-    ]
-  }]
-}];
+const LEVERS = [
+  [1,  'demographics.globalpop', 'Global population',
+    {max: 3}],
+  [2,  'demographics.urbanization', 'Urbanization',
+    {max: 3}],
+  [3,  'lifestyle.travel.passengerdist', 'Passenger distance'],
+  [4,  'lifestyle.travel.freightdist', 'Freight distance'],
+  [5,  'lifestyle.travel.mode', 'Mode of travel'],
+  [6,  'lifestyle.travel.occupancy', 'Occupancy & load'],
+  [7,  'lifestyle.travel.carownership', 'Car own or hire'],
+  [10, 'lifestyle.homes.size', 'Building size'],
+  [11, 'lifestyle.homes.temp', 'Temp & hot water use'],
+  [12, 'lifestyle.homes.appliances', 'Lighting & appliance use'],
+  [16, 'lifestyle.homes.products', 'Product lifespan & demand'],
+  [33, 'lifestyle.diet.calories', 'Calories consumed'],
+  [34, 'lifestyle.diet.meatamount', 'Quantity of meat'],
+  [35, 'lifestyle.diet.meattype', 'Type of meat'],
+  [8,  'tech.transport.efficiency', 'Transport efficiency'],
+  [9,  'tech.transport.electric', 'Electric & hydrogen'],
+  [13, 'tech.buildings.insulation', 'Building insulation'],
+  [14, 'tech.buildings.temp', 'Temp & cooking tech'],
+  [15, 'tech.buildings.appliances', 'Appliance efficiency'],
+  [17, 'tech.manufacturing.materials', 'Design, materials & recycling'],
+  [18, 'tech.manufacturing.metals', 'Iron, steel & aluminum'],
+  [19, 'tech.manufacturing.chemicals', 'Chemicals'],
+  [20, 'tech.manufacturing.other', 'Paper & other'],
+  [21, 'tech.manufacturing.cement', 'Cement'],
+  [22, 'tech.ccs.manufacturing', 'Carbon capture (manufacturing)'],
+  [25, 'tech.ccs.electricity', 'Carbon capture (electricity)'],
+  [23, 'fuels.fossil.petro', 'Coal, oil & gas'],
+  [24, 'fuels.fossil.efficiency', 'Fossil fuel efficiency'],
+  [26, 'fuels.nuclear', 'Nuclear'],
+  [27, 'fuels.renewables.wind', 'Wind'],
+  [28, 'fuels.renewables.hydro', 'Hydro'],
+  [29, 'fuels.renewables.marine', 'Marine'],
+  [30, 'fuels.renewables.solar', 'Solar'],
+  [31, 'fuels.renewables.geothermal', 'Geothermal'],
+  [32, 'fuels.renewables.storage', 'Storage & demand shifting'],
+  [40, 'fuels.bio.yields', 'Bioenergy yields'],
+  [41, 'fuels.bio.phase', 'Solid or liquid'],
+  [36, 'land.food.crops', 'Crop yields'],
+  [38, 'land.food.livestock.grain', 'Livestock (grain/residues fed)'],
+  [39, 'land.food.livestock.pasture', 'Livestock (pasture fed)'],
+  [48, 'land.food.waste', 'Wastes & residues'],
+  [42, 'land.use.surplus', 'Surplus land (forest & bioenergy)'],
+  [37, 'land.use.efficiency', 'Land-use efficiency'],
+  [43, 'future.ggr.biochar', 'Biochar'],
+  [44, 'future.ggr.aircapture', 'Direct air capture'],
+  [45, 'future.ggr.ocean', 'Ocean fertilization'],
+  [46, 'future.ggr.weathering.ocean', 'Enhanced weathering (oceanic)'],
+  [47, 'future.ggr.weathering.earth', 'Enhanced weathering (terrestrial)'],
+  [49, 'future.trajectory.emissions', 'Emissions trajectory'],
+  [50, 'physics.co2', 'Atmospheric CO2 fraction'],
+  [51, 'physics.confidence', 'Confidence in climate models',
+    {max: 2, integer: true}]
+];
 
 const SCENARIOS = [{
   title: 'Distributed effort',
@@ -248,7 +132,12 @@ const SCENARIOS = [{
   encoded: '22qqo223322jt332qqqpq23323qoqr22223h32333q11111fB2211111111'
 }];
 
+const STARTING_PLAYER = {
+  money: 10000
+};
+
 export default {
-  LEVER_SECTIONS: LEVER_SECTIONS,
+  STARTING_PLAYER: STARTING_PLAYER,
+  LEVERS: LEVERS,
   SCENARIOS: SCENARIOS
 };
