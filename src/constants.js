@@ -50,9 +50,9 @@ const LEVERS = [
   [46, 'future.ggr.weathering.ocean', 'Enhanced weathering (oceanic)'],
   [47, 'future.ggr.weathering.earth', 'Enhanced weathering (terrestrial)'],
   [49, 'future.trajectory.emissions', 'Emissions trajectory'],
-  [50, 'physics.co2', 'Atmospheric CO2 fraction'],
+  [50, 'physics.co2', 'Atmospheric CO2 fraction', {hidden: true}],
   [51, 'physics.confidence', 'Confidence in climate models',
-    {max: 2, integer: true}]
+    {max: 2, integer: true, hidden: true}]
 ];
 
 const SCENARIOS = [{

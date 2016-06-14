@@ -55,18 +55,22 @@ export default class LeversTable extends Component {
   }
 
   render() {
-    var table = Constants.LEVERS.map((lever) => {
-      var setting = this.props.levers[lever[1]];
-      return <LeversRow
-        key={lever[1]}
-        lever={lever}
-        setting={setting}
-        onSetLever={this.props.onSetLever}
-        onSpendMoney={this.props.onSpendMoney} />;
-    });
+    var rows = Constants.LEVERS
+      .filter((lever) => {
+        return !lever[3] || lever[3].hidden !== true;
+      })
+      .map((lever) => {
+        var setting = this.props.levers[lever[1]];
+        return <LeversRow
+          key={lever[1]}
+          lever={lever}
+          setting={setting}
+          onSetLever={this.props.onSetLever}
+          onSpendMoney={this.props.onSpendMoney} />;
+      });
     return (
       <table className='levers-table'>
-        <tbody>{table}</tbody>
+        <tbody>{rows}</tbody>
       </table>
     );
   }
