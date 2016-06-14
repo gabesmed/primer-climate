@@ -86,8 +86,8 @@ export default class App extends Component {
       var estimate;
       if (typeof this.state.result.lowEstimate === 'number') {
         estimate = (
-          this.state.result.lowEstimate.toFixed(1) + "°C" + '–' +
-          this.state.result.highEstimate.toFixed(1) + "°C"
+          this.state.result.lowEstimate.toFixed(2) + "°C" + '–' +
+          this.state.result.highEstimate.toFixed(2) + "°C"
         );
       } else {
         estimate = 'Extreme warming – beyond the level assessed by the IPCC';
