@@ -1,5 +1,10 @@
-const expressHttpProxy = require('express-http-proxy');
+const redis = require('redis');
+const requestProxy = require('express-request-proxy');
 const url = require('url');
+
+require('redis-streams')(redis);
+
+const cacheClient = redis.createClient(process.env.REDIS_URL);
 
 const server = require('./server.js')
 
@@ -24,14 +29,13 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-var calcProxy = expressHttpProxy(calcServer, {
-  port: calcPort,
-  forwardPath: function(req, res) {
-    return calcPath + url.parse(req.url).path;
-  }
+var calcProxy = requestProxy({
+  url: `http://${calcServer}:${calcPort}/${calcPath}/*`,
+  cache: cacheClient,
+  cacheMaxAge: 86400
 });
 
-app.use('/calc', calcProxy);
+app.get('/calc/*', calcProxy);
 
 app.listen(port);
 console.log(`Listening at http://localhost:${port}`);

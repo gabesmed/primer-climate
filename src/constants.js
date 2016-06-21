@@ -55,7 +55,7 @@ const LEVERS = [
     {max: 2, integer: true, hidden: true}]
 ];
 
-const SCENARIOS = [{
+const STOCK_PATHWAYS = [{
   title: 'Distributed effort',
   encoded: '22rfoe2ss3besss1ssssssssssssssss222sssssss11111sr2211111111'
 }, {
@@ -132,12 +132,45 @@ const SCENARIOS = [{
   encoded: '22qqo223322jt332qqqpq23323qoqr22223h32333q11111fB2211111111'
 }];
 
-const STARTING_PLAYER = {
-  money: 10000
-};
+const SCENARIOS = [{
+  title: 'Energy trader',
+  startingPlayer: {money: 10000},
+  levers: [
+    'fuels.fossil.petro',
+    'fuels.fossil.efficiency',
+    'fuels.nuclear',
+    'fuels.renewables.wind',
+    'fuels.renewables.hydro',
+    'fuels.renewables.marine',
+    'fuels.renewables.solar',
+    'fuels.renewables.geothermal',
+    'fuels.renewables.storage'
+  ]
+}, {
+  title: 'Livestock farmer',
+  startingPlayer: {money: 10000},
+  levers: [
+    'land.food.crops',
+    'land.food.livestock.grain',
+    'land.food.livestock.pasture',
+    'land.food.waste',
+    'land.use.surplus',
+    'land.use.efficiency'
+  ]
+}, {
+  title: 'Manufacturing plant',
+  startingPlayer: {money: 10000},
+  levers: [
+    'tech.manufacturing.materials',
+    'tech.manufacturing.metals',
+    'tech.manufacturing.chemicals',
+    'tech.manufacturing.other',
+    'tech.manufacturing.cement'
+  ]
+}]
 
 export default {
-  STARTING_PLAYER: STARTING_PLAYER,
   LEVERS: LEVERS,
+  STOCK_PATHWAYS: STOCK_PATHWAYS,
   SCENARIOS: SCENARIOS
-};
+}
