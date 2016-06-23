@@ -41,7 +41,7 @@ class LeversRow extends Component {
     if (this.isPurchasable()) {
       actions = (
         <button onClick={this.handleClick.bind(this)}>
-          Buy +1 abatement for $100
+          Buy +1 for $100
         </button>
       )
     }

@@ -3,29 +3,4 @@ body {
     box-sizing: border-box;
 }
 
-.app {
-
-}
-
-.app.fetching .results {
-    opacity: 0.5;
-}
-
-.levers-table {
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-.right-panel {
-    font-size: 24pt;
-    max-width: 500px;
-    margin-bottom: 0.5em;
-}
-
-.right-panel .player {
-    margin-bottom: 0.5em;
-}
-
-.right-panel .results-title {
-    font-weight: bold;
-}
+table th { text-align: left; }
