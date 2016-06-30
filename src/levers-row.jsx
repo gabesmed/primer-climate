@@ -100,7 +100,7 @@ export default class LeversRow extends Component {
       var curEmissions = this.state.curResults.cumulativeEmissions
       var nextEmissions = this.state.nextResults.cumulativeEmissions
       console.log('curEmissions', curEmissions, 'nextEmissions', nextEmissions)
-      var savings = (curEmissions - nextEmissions).toFixed(2) + ' Gigatons saved'
+      var savings = 'save ' + (curEmissions - nextEmissions).toFixed(2) + ' gigatons'
     }
     var url = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
     return (
@@ -112,11 +112,11 @@ export default class LeversRow extends Component {
           <br/>
           In 2050, will be {val.toFixed(2)} {this.props.lever.unit}
           <br/>
-          ({improvement.toFixed(1)}% of 2011 baseline - {actionLevel[1]})
+          {improvement.toFixed(1)}% of 2011 baseline - {actionLevel[1]} ({this.getSetting()})
         </td>
         <td>
           {actions}<br/>
-          {savings}
+          <small>{savings}</small>
         </td>
       </tr>
     )

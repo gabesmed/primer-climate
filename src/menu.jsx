@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Constants from './constants'
 import Game from './game.jsx'
-import SelectScenario from './select-scenario.jsx'
+import MenuScenarios from './menu-scenarios.jsx'
 
 export default class Menu extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class Menu extends Component {
 
   render() {
     if (this.state.page === 'select-scenario') {
-      return <SelectScenario
+      return <MenuScenarios
         onSelectScenario={this.handleSelectScenario.bind(this)} />
     }
     else if (this.state.page === 'game') {

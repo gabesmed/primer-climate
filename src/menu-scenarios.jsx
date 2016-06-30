@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Constants from './constants'
 
-export default class SelectScenario extends Component {
+export default class MenuScenarios extends Component {
   propTypes: {
     onSelectScenario: React.PropTypes.Function.isRequired
   }
