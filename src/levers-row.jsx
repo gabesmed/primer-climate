@@ -104,7 +104,7 @@ export default class LeversRow extends Component {
     }
     var url = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
 
-    var desc = descriptions.descriptions[this.props.lever.num - 1]
+    var desc = descriptions.descriptions[this.props.lever.num]
     // 0, 
     // "Lever", 
     // "Situation today", 
