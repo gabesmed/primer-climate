@@ -4,10 +4,10 @@ import React, { Component } from 'react'
 import calc from './calc'
 
 const ACTION_TABLE = [
-  [10, 'Minimal abatement'],
-  [20, 'Ambitious'],
-  [30, 'Very ambitious'],
-  [40, 'Extremely ambitious']
+  [10, 'Minimal action'],
+  [20, 'Ambitious action'],
+  [30, 'Very ambitious action'],
+  [40, 'Extremely ambitious action']
 ]
 
 export default class LeversRow extends Component {
