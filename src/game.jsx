@@ -106,7 +106,7 @@ export default class Game extends Component {
               <td>
                 <LeversTable
                   settings={this.state.levers}
-                  includeLeverNames={this.props.scenario.levers}
+                  includeLeverNames={this.props.scenario.leverNames}
                   onSetLever={this.onSetLever.bind(this)}
                   onSpendMoney={this.onSpendMoney.bind(this)}
                 />

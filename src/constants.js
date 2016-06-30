@@ -78,7 +78,7 @@ const STOCK_PATHWAYS = [{
 const SCENARIOS = [{
   title: 'Energy trader',
   startingPlayer: {money: 10000},
-  levers: [
+  leverNames: [
     'fuels.fossil.petro',
     'fuels.fossil.efficiency',
     'fuels.nuclear',
@@ -92,23 +92,41 @@ const SCENARIOS = [{
 }, {
   title: 'Livestock farmer',
   startingPlayer: {money: 10000},
-  levers: [
+  leverNames: [
     'land.food.crops',
     'land.food.livestock.grain',
     'land.food.livestock.pasture',
     'land.food.waste',
     'land.use.surplus',
-    'land.use.efficiency'
+    'land.use.efficiency',
+    'lifestyle.diet.calories',
+    'lifestyle.diet.meatamount',
+    'lifestyle.diet.meattype'
   ]
 }, {
   title: 'Manufacturing plant',
   startingPlayer: {money: 10000},
-  levers: [
+  leverNames: [
     'tech.manufacturing.materials',
     'tech.manufacturing.metals',
     'tech.manufacturing.chemicals',
     'tech.manufacturing.other',
-    'tech.manufacturing.cement'
+    'tech.manufacturing.cement',
+    'lifestyle.travel.freightdist'
+  ]
+}, {
+  title: 'Real estate developer',
+  startingPlayer: {money: 10000},
+  leverNames: [
+    'lifestyle.homes.size',
+    'lifestyle.homes.temp',
+    'lifestyle.homes.products',
+    'tech.buildings.insulation',
+    'tech.buildings.temp',
+    'tech.buildings.appliances',
+    'lifestyle.travel.mode',
+    'lifestyle.travel.carownership',
+    'lifestyle.travel.passengerdist'
   ]
 }]
 
