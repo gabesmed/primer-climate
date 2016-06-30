@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Game from './game.jsx'
+import Menu from './menu.jsx'
 
-ReactDOM.render(<Game />, document.getElementById('root'))
+ReactDOM.render(<Menu />, document.getElementById('root'))

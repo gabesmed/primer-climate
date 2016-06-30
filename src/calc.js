@@ -24,13 +24,11 @@ class Calc {
   }
 
   process(data) {
-    var lowEstimate = data[0].dashboard['temperature change Low'][1]
-    var highEstimate = data[0].dashboard['temperature change High'][1]
-    var result = {
-      lowEstimate: lowEstimate,
-      highEstimate: highEstimate
+    return {
+      lowEstimate: data[0].dashboard['temperature change Low'][1],
+      highEstimate: data[0].dashboard['temperature change High'][1],
+      cumulativeEmissions: data[0].dashboard['cum GHG emissions projected'][1]
     }
-    return result    
   }
 }
 

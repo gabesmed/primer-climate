@@ -1,60 +1,3 @@
-const LEVERS = [
-  [1,  'demographics.globalpop', 'Global population',
-    {max: 3}],
-  [2,  'demographics.urbanization', 'Urbanization',
-    {max: 3}],
-  [3,  'lifestyle.travel.passengerdist', 'Passenger distance'],
-  [4,  'lifestyle.travel.freightdist', 'Freight distance'],
-  [5,  'lifestyle.travel.mode', 'Mode of travel'],
-  [6,  'lifestyle.travel.occupancy', 'Occupancy & load'],
-  [7,  'lifestyle.travel.carownership', 'Car own or hire'],
-  [10, 'lifestyle.homes.size', 'Building size'],
-  [11, 'lifestyle.homes.temp', 'Temp & hot water use'],
-  [12, 'lifestyle.homes.appliances', 'Lighting & appliance use'],
-  [16, 'lifestyle.homes.products', 'Product lifespan & demand'],
-  [33, 'lifestyle.diet.calories', 'Calories consumed'],
-  [34, 'lifestyle.diet.meatamount', 'Quantity of meat'],
-  [35, 'lifestyle.diet.meattype', 'Type of meat'],
-  [8,  'tech.transport.efficiency', 'Transport efficiency'],
-  [9,  'tech.transport.electric', 'Electric & hydrogen'],
-  [13, 'tech.buildings.insulation', 'Building insulation'],
-  [14, 'tech.buildings.temp', 'Temp & cooking tech'],
-  [15, 'tech.buildings.appliances', 'Appliance efficiency'],
-  [17, 'tech.manufacturing.materials', 'Design, materials & recycling'],
-  [18, 'tech.manufacturing.metals', 'Iron, steel & aluminum'],
-  [19, 'tech.manufacturing.chemicals', 'Chemicals'],
-  [20, 'tech.manufacturing.other', 'Paper & other'],
-  [21, 'tech.manufacturing.cement', 'Cement'],
-  [22, 'tech.ccs.manufacturing', 'Carbon capture (manufacturing)'],
-  [25, 'tech.ccs.electricity', 'Carbon capture (electricity)'],
-  [23, 'fuels.fossil.petro', 'Coal, oil & gas'],
-  [24, 'fuels.fossil.efficiency', 'Fossil fuel efficiency'],
-  [26, 'fuels.nuclear', 'Nuclear'],
-  [27, 'fuels.renewables.wind', 'Wind'],
-  [28, 'fuels.renewables.hydro', 'Hydro'],
-  [29, 'fuels.renewables.marine', 'Marine'],
-  [30, 'fuels.renewables.solar', 'Solar'],
-  [31, 'fuels.renewables.geothermal', 'Geothermal'],
-  [32, 'fuels.renewables.storage', 'Storage & demand shifting'],
-  [40, 'fuels.bio.yields', 'Bioenergy yields'],
-  [41, 'fuels.bio.phase', 'Solid or liquid'],
-  [36, 'land.food.crops', 'Crop yields'],
-  [38, 'land.food.livestock.grain', 'Livestock (grain/residues fed)'],
-  [39, 'land.food.livestock.pasture', 'Livestock (pasture fed)'],
-  [48, 'land.food.waste', 'Wastes & residues'],
-  [42, 'land.use.surplus', 'Surplus land (forest & bioenergy)'],
-  [37, 'land.use.efficiency', 'Land-use efficiency'],
-  [43, 'future.ggr.biochar', 'Biochar'],
-  [44, 'future.ggr.aircapture', 'Direct air capture'],
-  [45, 'future.ggr.ocean', 'Ocean fertilization'],
-  [46, 'future.ggr.weathering.ocean', 'Enhanced weathering (oceanic)'],
-  [47, 'future.ggr.weathering.earth', 'Enhanced weathering (terrestrial)'],
-  [49, 'future.trajectory.emissions', 'Emissions trajectory'],
-  [50, 'physics.co2', 'Atmospheric CO2 fraction', {hidden: true}],
-  [51, 'physics.confidence', 'Confidence in climate models',
-    {max: 2, integer: true, hidden: true}]
-];
-
 const STOCK_PATHWAYS = [{
   title: 'Distributed effort',
   encoded: '22rfoe2ss3besss1ssssssssssssssss222sssssss11111sr2211111111'
@@ -170,7 +113,6 @@ const SCENARIOS = [{
 }]
 
 export default {
-  LEVERS: LEVERS,
   STOCK_PATHWAYS: STOCK_PATHWAYS,
   SCENARIOS: SCENARIOS
 }

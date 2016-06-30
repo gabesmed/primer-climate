@@ -1,4 +1,4 @@
-import Constants from './constants'
+import Levers from './levers'
 
 const CODE_VALS = [
   '1', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
@@ -16,8 +16,8 @@ function encodeNumber(number) {
 
 function encode(levers) {
   var array = new Array(59).fill(1)
-  Constants.LEVERS.forEach(function(lever) {
-    array[lever[0] - 1] = encodeNumber(levers[lever[1]])
+  Levers.forEach(function(lever) {
+    array[lever.num - 1] = encodeNumber(levers[lever.name])
   })
   return array.join('')
 }
@@ -32,12 +32,12 @@ function decodeDigit(digit) {
 
 function decode(encoded) {
   var levers = {}
-  Constants.LEVERS.forEach(function(lever) {
-    var digit = encoded[lever[0] - 1]
+  Levers.forEach(function(lever) {
+    var digit = encoded[lever.num - 1]
     if (!digit) {
       throw new Error('Digit at pos ' + lever.pos + ' not found')
     }
-    levers[lever[1]] = decodeDigit(digit)
+    levers[lever.name] = decodeDigit(digit)
   })
   return levers
 }
