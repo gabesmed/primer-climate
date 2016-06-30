@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 
 import calc from './calc'
+import descriptions from './descriptions.json'
 
 const ACTION_TABLE = [
   [10, 'Minimal action'],
@@ -81,14 +82,14 @@ export default class LeversRow extends Component {
       return i[0] <= this.getSetting()
     })
     const baseline = this.props.lever.baseline
-    var val = this.props.lever.value(this.getSetting())
+    var val = this.props.lever.value(this.getSetting() - 10)
     var improvement = 0
     if (baseline > 0) {
       improvement = 100 * (val / baseline)
     }
     var actions = ''
     if (this.isPurchasable()) {
-      var nextVal = this.props.lever.value(this.getNextSetting())
+      var nextVal = this.props.lever.value(this.getNextSetting() - 10)
       actions = (
         <button onClick={this.handleClick.bind(this)}>
           Improve to {nextVal.toFixed(2)} for $100
@@ -99,10 +100,23 @@ export default class LeversRow extends Component {
     if (this.state.curResults && this.state.nextResults) {
       var curEmissions = this.state.curResults.cumulativeEmissions
       var nextEmissions = this.state.nextResults.cumulativeEmissions
-      console.log('curEmissions', curEmissions, 'nextEmissions', nextEmissions)
       var savings = 'save ' + (curEmissions - nextEmissions).toFixed(2) + ' gigatons'
     }
     var url = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
+
+    var desc = descriptions.descriptions[this.props.lever.num - 1]
+    // 0, 
+    // "Lever", 
+    // "Situation today", 
+    // "Interactions with other levers", 
+    // "One-pager context", 
+    // "Things to consider", 
+    // "1-pager Level 1", 
+    // "1-pager Level 2", 
+    // "1-pager Level 3", 
+    // "1-pager Level 4"
+    var onePager = desc[5 + Math.floor(this.getSetting() / 10)]
+
     return (
       <tr key={this.props.lever.name}>
         <td>
@@ -113,6 +127,10 @@ export default class LeversRow extends Component {
           In 2050, will be {val.toFixed(2)} {this.props.lever.unit}
           <br/>
           {improvement.toFixed(1)}% of 2011 baseline - {actionLevel[1]} ({this.getSetting()})
+          <br/>
+          <p className='one-pager'>
+            {onePager}
+          </p>
         </td>
         <td>
           {actions}<br/>

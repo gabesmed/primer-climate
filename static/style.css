@@ -4,3 +4,7 @@ body {
 }
 
 table th { text-align: left; }
+
+.one-pager {
+    width: 400px;
+}

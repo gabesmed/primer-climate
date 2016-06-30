@@ -46,6 +46,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "express": "^4.13.4",
     "express-http-proxy": "^0.7.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.13.1",
     "memjs": "^0.10.0",
     "react": "^0.14.6",
