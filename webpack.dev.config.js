@@ -5,7 +5,9 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    './node_modules/bootstrap/dist/js/bootstrap.js',
+    './src/index',
+    './static/style.scss'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -13,7 +15,12 @@ module.exports = {
     publicPath: '/dist/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'window.Tether': 'tether'
+    })
   ],
   module: {
     loaders: [{
@@ -23,6 +30,11 @@ module.exports = {
     }, {
       test: /\.json$/,
       loaders: ['json']
+    }, {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
     }]
   }
 };
+
+

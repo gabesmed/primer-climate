@@ -1,14 +1,15 @@
 import _ from 'lodash'
+import $ from 'jquery'
 import React, { Component } from 'react'
 
 import calc from './calc'
 import descriptions from './descriptions.json'
 
 const ACTION_TABLE = [
-  [10, 'Minimal action'],
-  [20, 'Ambitious action'],
-  [30, 'Very ambitious action'],
-  [40, 'Extremely ambitious action']
+  [10, 'minimal'],
+  [20, 'ambitious'],
+  [30, 'very ambitious'],
+  [40, 'extremely ambitious']
 ]
 
 export default class LeversRow extends Component {
@@ -25,6 +26,10 @@ export default class LeversRow extends Component {
       curResults: null,
       nextResults: null
     }
+  }
+
+  componentDidMount() {
+    $('a[data-tooltip]').tooltip();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,6 +65,10 @@ export default class LeversRow extends Component {
     return this.props.settings[this.props.lever.name]
   }
 
+  getActionPoints() {
+    return this.getSetting() - 10
+  }
+
   getNextSetting() {
     return this.getSetting() + 1
   }
@@ -87,22 +96,29 @@ export default class LeversRow extends Component {
     if (baseline > 0) {
       improvement = 100 * (val / baseline)
     }
-    var actions = ''
-    if (this.isPurchasable()) {
-      var nextVal = this.props.lever.value(this.getNextSetting() - 10)
-      actions = (
-        <button onClick={this.handleClick.bind(this)}>
-          Improve to {nextVal.toFixed(2)} for $100
+    var nextStep = ''
+    var btn = ''
+    if (this.isPurchasable() && this.state.curResults && this.state.nextResults) {
+      var nextVal = this.props.lever.value(this.getNextSetting() - 1)
+      var curEmissions = this.state.curResults.cumulativeEmissions
+      var nextEmissions = this.state.nextResults.cumulativeEmissions
+      var savings = (curEmissions - nextEmissions).toFixed(2)
+      nextStep = (
+        <div>
+          <div>
+            Next step: improve to {nextVal.toFixed(2)} {this.props.lever.unit}
+            <br/>
+            Savings: {savings} gigatons
+          </div>
+        </div>
+      )
+      btn = (
+        <button className="btn btn-secondary" onClick={this.handleClick.bind(this)}>
+          Improve for $100
         </button>
       )
     }
-    var savings = ''
-    if (this.state.curResults && this.state.nextResults) {
-      var curEmissions = this.state.curResults.cumulativeEmissions
-      var nextEmissions = this.state.nextResults.cumulativeEmissions
-      var savings = 'save ' + (curEmissions - nextEmissions).toFixed(2) + ' gigatons'
-    }
-    var url = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
+    var pageUrl = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
 
     var desc = descriptions.descriptions[this.props.lever.num]
     // 0, 
@@ -120,21 +136,22 @@ export default class LeversRow extends Component {
     return (
       <tr key={this.props.lever.name}>
         <td>
-          <a href={url}>
-            {category}: {this.props.lever.title}
-          </a>
+          <strong>
+            {this.props.lever.title}: {this.getActionPoints()} action points ({actionLevel[1]})
+          </strong>
           <br/>
-          In 2050, will be {val.toFixed(2)} {this.props.lever.unit}
+          {val.toFixed(2)} {this.props.lever.unit} in 2050
           <br/>
-          {improvement.toFixed(1)}% of 2011 baseline - {actionLevel[1]} ({this.getSetting()})
-          <br/>
-          <p className='one-pager'>
-            {onePager}
-          </p>
+          {improvement.toFixed(1)}% of 2011 baseline
+          &nbsp;
+          <a title={onePager}>More info</a>&nbsp;
+          <a href={pageUrl}>See page</a>
         </td>
         <td>
-          {actions}<br/>
-          <small>{savings}</small>
+          {nextStep}
+        </td>
+        <td>
+          {btn}
         </td>
       </tr>
     )

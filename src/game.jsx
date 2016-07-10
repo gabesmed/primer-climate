@@ -87,36 +87,29 @@ export default class Game extends Component {
     }
     return (
       <div>
-        <a href='' onClick={this.handleCancel.bind(this)}>
-          &larr; back
-        </a>
-        <table>
-          <thead>
-            <tr>
-              <th>Assets</th>
-              <th>Options</th>
-              <th>Climate</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Money: ${this.state.player.money}
-              </td>
-              <td>
-                <LeversTable
-                  settings={this.state.levers}
-                  includeLeverNames={this.props.scenario.leverNames}
-                  onSetLever={this.onSetLever.bind(this)}
-                  onSpendMoney={this.onSpendMoney.bind(this)}
-                />
-              </td>
-              <td>
-                {results}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="row-fluid">
+          <div className="col-sm-6">
+            <div>
+              <a href='' onClick={this.handleCancel.bind(this)}>
+                &larr; back
+              </a>
+            </div>
+            Money: ${this.state.player.money}
+          </div>
+          <div className="col-sm-6">
+            {results}
+          </div>
+        </div>
+        <div className="row-fluid">
+          <div className="col-sm-12">
+            <LeversTable
+              settings={this.state.levers}
+              includeLeverNames={this.props.scenario.leverNames}
+              onSetLever={this.onSetLever.bind(this)}
+              onSpendMoney={this.onSpendMoney.bind(this)}
+            />
+          </div>
+        </div>
       </div>
     )
   }

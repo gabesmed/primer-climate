@@ -4,7 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/index'
+    './src/index',
+    './static/style.scss'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,6 +24,11 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'window.Tether': 'tether'
     })
   ],
   module: {
@@ -33,6 +39,9 @@ module.exports = {
     }, {
       test: /\.json$/,
       loaders: ['json']
+    }, {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
     }]
   }
 }

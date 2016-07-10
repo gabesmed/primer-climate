@@ -276,7 +276,7 @@ export default [{
   num: 38,
   name: 'land.food.livestock.grain',
   title: 'Livestock (grain/residues fed)',
-  unit: 'pecent of cattle meat from animals in feedlot systems',
+  unit: 'pecent cattle meat from feedlot systems',
   baseline: 6,
   value: v => 0 + 1 * v
 }, {

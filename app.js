@@ -6,7 +6,7 @@ const zlib = require('zlib')
 
 const server = require('./server.js')
 
-const port = (process.env.PORT || 3000)
+const port = (process.env.PORT || 4000)
 const cacheDuration = 86400
 const calcServer = process.env.CALC_SERVER || 'localhost'
 const calcPort = process.env.CALC_PORT || 9292
@@ -64,6 +64,10 @@ var calcProxy = expressHttpProxy(calcServer, {
   forwardPath: function(req, res) {
     return calcPath + url.parse(req.url).path
   }
+})
+
+app.get('/multi', function(req, res) {
+  
 })
 
 app.use('/calc', cacheMiddleware, calcProxy)
