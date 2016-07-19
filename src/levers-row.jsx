@@ -29,7 +29,6 @@ export default class LeversRow extends Component {
   }
 
   componentDidMount() {
-    $('a[data-tooltip]').tooltip();
     this.calcNext()
   }
 
