@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval',
   entry: [
+    'whatwg-fetch',
     'webpack-hot-middleware/client',
     './node_modules/bootstrap/dist/js/bootstrap.js',
     './src/index',

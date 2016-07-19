@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import calc from './calc'
 import Constants from './constants'
+import GameResults from './game-results.jsx'
 import LeversTable from './levers-table.jsx'
 import LeverUtils from './lever-utils'
 
@@ -12,17 +13,25 @@ export default class Game extends Component {
     var rcp85 = _.find(Constants.STOCK_PATHWAYS, ['title', 'RCP 8.5'])
     super(props)
     this.state = {
-      player: Object.assign({}, props.scenario.startingPlayer),
+      player: this.getStartingPlayer(props.scenario),
       levers: LeverUtils.decode(rcp85.encoded),
-      results: null
     }
   }
 
-  componentDidMount() {
-    this.fetchResults(this.state.levers)  
+  getStartingPlayer(scenario) {
+    let player = Object.assign({
+      production: {}
+    }, scenario.startingPlayer)
+
+    scenario.products.forEach((product) => {
+      player.production[product.name] = {
+        production: 0
+      }
+    })
+    return player
   }
 
-  onSpendMoney(amount) {
+  handleSpendMoney(amount) {
     this.setState({
       player: Object.assign({}, this.state.player, {
         money: this.state.player.money - amount
@@ -35,78 +44,54 @@ export default class Game extends Component {
     this.props.onCancel()
   }
 
-  onSetLever(key, newSetting) {
+  handleSetLever(key, newSetting) {
     var newLever = {}
     newLever[key] = newSetting
-    this.setLevers(Object.assign({}, this.state.levers, newLever))
-  }
-
-  onSetScenario(scenario) {
-    this.setLevers(LeverUtils.decode(scenario.encoded))
-  }
-
-  setLevers(levers) {
-    this.setState({levers: levers})
-    this.fetchResults(levers)
-  }
-
-  fetchResults(levers) {
-    var random = Math.random()
-    this._latest = random
-    calc.calc(levers)
-      .then(results => {
-        if (this._latest !== random) {
-          return
-        }
-        this.setState({
-          results: results
-        })
-      })
+    this.setState({
+      levers: Object.assign({}, this.state.levers, newLever)
+    })
   }
 
   render() {
-    var results = <div>No results.</div>
-    if (this.state.results) {
-      var emissions = this.state.results.cumulativeEmissions.toFixed(1)
-      var estimate
-      if (typeof this.state.results.lowEstimate === 'number') {
-        estimate = (
-          this.state.results.lowEstimate.toFixed(2) + "°C" + '–' +
-          this.state.results.highEstimate.toFixed(2) + "°C"
-        )
-      } else {
-        estimate = 'Catastrophic warming'
-      }
-      results = (
-        <div>
-          <h4>The World in 2100</h4>
-          <div>Cumulative Emissions: {emissions} Gigatons</div>
-          <div>Global Mean Temp: {estimate}</div>
+    const yearNum = this.state.player.year - this.props.scenario.startingPlayer.year + 1
+    const numYears = this.props.scenario.numYears
+    const products = this.props.scenario.products.map((product) => {
+      const production = this.state.player.production[product.name]
+      return (
+        <div key={product.name}>
+          {product.title}: {production.production}
         </div>
       )
-    }
+    });
     return (
       <div>
-        <div className="row-fluid">
+        <div>
+          <a href='' onClick={this.handleCancel.bind(this)}>
+            &larr; back
+          </a>
+        </div>
+        <div className="row">
           <div className="col-sm-6">
-            <div>
-              <a href='' onClick={this.handleCancel.bind(this)}>
-                &larr; back
-              </a>
-            </div>
-            Money: ${this.state.player.money}
+            <h2>Your store</h2>
+            <p>
+              Year: {this.state.player.year} ({yearNum}/{numYears})<br/>
+              Money: ${this.state.player.money}<br/>
+              Brand: {this.state.player.brand}<br/>
+              Employees: {this.state.player.employees}
+            </p>
+            {products}
           </div>
           <div className="col-sm-6">
-            {results}
+            <GameResults levers={this.state.levers} />
           </div>
         </div>
-        <div className="row-fluid">
+        <div className="row">
           <div className="col-sm-12">
             <LeversTable
               settings={this.state.levers}
               includeLeverNames={this.props.scenario.leverNames}
-              onSetLever={this.onSetLever.bind(this)}
-              onSpendMoney={this.onSpendMoney.bind(this)}
+              onSetLever={this.handleSetLever.bind(this)}
+              onSpendMoney={this.handleSpendMoney.bind(this)}
             />
           </div>
         </div>

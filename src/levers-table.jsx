@@ -28,9 +28,9 @@ export default class LeversTable extends Component {
           onSpendMoney={this.props.onSpendMoney} />
       })
     return (
-      <table className='table table-sm table-striped'>
-        <tbody>{rows}</tbody>
-      </table>
+      <div>
+        {rows}
+      </div>
     )
   }
 }

@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import LeverUtils from './lever-utils'
 
 class Calc {
