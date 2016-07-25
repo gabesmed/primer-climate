@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import { fetchCalcIfNeeded } from '../actions/calc'
 import { startScenario, improveLever } from '../actions/play'
-import Play from '../components/play'
+import PlayMain from '../components/play-main'
 
 const mapStateToProps = (state) => {
   return {
@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onStartScenario: (scenarioName) => {
-      dispatch(startScenario(scenarioName))
+    onImproveLever: (leverName) => {
+      dispatch(improveLever(leverName))
     },
     onFetchCalc: (encoded) => {
       dispatch(fetchCalcIfNeeded(encoded))
@@ -25,9 +25,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const PlayContainer = connect(
+const PlayMainContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Play)
+)(PlayMain)
 
-export default PlayContainer
+export default PlayMainContainer

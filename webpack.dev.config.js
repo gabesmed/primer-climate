@@ -27,6 +27,11 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   module: {
+    preLoaders: [{
+      test: /\.jsx?$/,
+      loaders: ['eslint'],
+      include: path.join(__dirname, 'src')
+    }],
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['react-hot', 'babel'],

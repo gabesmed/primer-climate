@@ -2,13 +2,13 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Constants from '../constants/constants'
+import Scenarios from '../constants/scenarios'
 import Levers from '../constants/levers'
 
 export default class Menu extends Component {
 
   render() {
-    var scenarios = Constants.SCENARIOS.map((scenario, i) => {
+    var scenarios = Scenarios.map((scenario, i) => {
       var leverTitles = scenario.leverNames
         .map((leverName) => {
           var lever = _.find(Levers, ['name', leverName])

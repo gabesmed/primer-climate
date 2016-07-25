@@ -2,8 +2,8 @@ import _ from 'lodash'
 import $ from 'jquery'
 import React, { Component } from 'react'
 
-import descriptions from '../constants/descriptions.json'
-import LeverUtils from '../utils/lever-utils'
+import descriptions from '../../constants/descriptions.json'
+import LeverUtils from '../../utils/lever-utils'
 
 const ACTION_TABLE = [
   [10, 'minimal'],
@@ -24,7 +24,7 @@ function encodeNext(settings, key) {
   return LeverUtils.encode(nextSettings)
 }
 
-export default class LeversRow extends Component {
+export default class LeverOption extends Component {
   propTypes: {
     settings: React.PropTypes.object.isRequired,
     lever: React.PropTypes.object.isRequired,

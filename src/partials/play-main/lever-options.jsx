@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 
-import Levers from '../constants/levers'
-import LeversRow from './levers-row.jsx'
+import Levers from '../../constants/levers'
+import LeverOption from './lever-option'
 
-export default class LeversTable extends Component {
+export default class LeverOptions extends Component {
   propTypes: {
     settings: React.PropTypes.object.isRequired,
     includeLeverNames: React.PropTypes.array.isRequired,
@@ -19,7 +19,7 @@ export default class LeversTable extends Component {
       })
       .map((lever) => {
         var setting = this.props.settings[lever.name]
-        return <LeversRow
+        return <LeverOption
           key={lever.name}
           lever={lever}
           settings={this.props.settings}

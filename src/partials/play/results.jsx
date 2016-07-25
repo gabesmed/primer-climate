@@ -1,11 +1,6 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 
-import Constants from '../constants/constants'
-import LeversTable from './levers-table.jsx'
-import LeverUtils from '../utils/lever-utils'
-
-export default class GameResults extends Component {
+export default class PlayResults extends Component {
 
   render() {
     if (!this.props.results) {
@@ -19,8 +14,8 @@ export default class GameResults extends Component {
     var estimate
     if (typeof data.lowEstimate === 'number') {
       estimate = (
-        data.lowEstimate.toFixed(2) + "°C" + '–' +
-        data.highEstimate.toFixed(2) + "°C"
+        data.lowEstimate.toFixed(2) + '°C' + '–' +
+        data.highEstimate.toFixed(2) + '°C'
       )
     } else {
       estimate = 'Catastrophic warming'

@@ -2,10 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-import Constants from '../constants/constants'
-import GameResults from './game-results.jsx'
-import LeversTable from './levers-table.jsx'
-import LeverUtils from '../utils/lever-utils'
+import PlayResults from '../partials/play/results'
 
 export default class Play extends Component {
 
@@ -14,12 +11,7 @@ export default class Play extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.encoded) {
-      const results = nextProps.calc[nextProps.encoded]
-      if (!results) {
-        nextProps.onFetchCalc(nextProps.encoded)
-      }
-    }
+    nextProps.onFetchCalc(nextProps.encoded)
   }
 
   render() {
@@ -58,20 +50,10 @@ export default class Play extends Component {
             {products}
           </div>
           <div className="col-sm-6">
-            <GameResults results={results} />
+            <PlayResults results={results} />
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-12">
-            <LeversTable
-              calc={this.props.calc}
-              settings={this.props.levers}
-              includeLeverNames={this.props.scenario.leverNames}
-              onImproveLever={this.props.onImproveLever}
-              onFetchCalc={this.props.onFetchCalc}
-            />
-          </div>
-        </div>
+        {this.props.children}
       </div>
     )
   }

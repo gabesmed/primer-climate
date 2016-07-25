@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
-import Constants from '../constants/constants'
+import Scenarios from '../constants/scenarios'
+import StockPathways from '../constants/stock-pathways'
 import LeverUtils from '../utils/lever-utils'
 
 const initialState = {
@@ -23,9 +24,8 @@ function getStartingPlayer(scenario) {
 function playReducer(state = initialState, action) {
   switch (action.type) {
     case 'START_SCENARIO':
-      const rcp85 = _.find(Constants.STOCK_PATHWAYS, ['title', 'RCP 8.5'])
-      const scenario = _.find(Constants.SCENARIOS,
-        ['name', action.scenarioName])
+      const rcp85 = _.find(StockPathways, ['title', 'RCP 8.5'])
+      const scenario = _.find(Scenarios, ['name', action.scenarioName])
       const player = getStartingPlayer(scenario)
       return {
         scenario: scenario,
