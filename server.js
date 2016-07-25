@@ -8,9 +8,12 @@ module.exports = {
     const staticPath = express.static(path.join(__dirname, './static'))
     const distPath = express.static(path.join(__dirname, './dist'))
 
+    const indexHandler = function (_, res) { res.sendFile(indexPath) }
+
     app.use('/static', staticPath)
     app.use('/dist', distPath)
-    app.get('/', function (_, res) { res.sendFile(indexPath) })
+    app.get('/', indexHandler)
+    app.get('/play/*', indexHandler)
 
     return app
   }

@@ -1,17 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import Constants from './constants'
-import Levers from './levers'
+import Constants from '../constants/constants'
+import Levers from '../constants/levers'
 
-export default class MenuScenarios extends Component {
-  propTypes: {
-    onSelectScenario: React.PropTypes.Function.isRequired
-  }
-
-  onClickScenario(i, e) {
-    this.props.onSelectScenario(i)
-  }
+export default class Menu extends Component {
 
   render() {
     var scenarios = Constants.SCENARIOS.map((scenario, i) => {
@@ -33,7 +27,9 @@ export default class MenuScenarios extends Component {
             <ul style={{paddingLeft: 0}}>
               {leverTitles}
             </ul>
-            <button className="btn btn-primary btn-block" onClick={this.onClickScenario.bind(this, i)}>Select</button>
+            <Link
+              className="btn btn-primary btn-block"
+              to={`/play/${scenario.name}`}>Select</Link>
           </div>
         </div>
       )

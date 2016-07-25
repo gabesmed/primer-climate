@@ -108,6 +108,7 @@ const SCENARIOS = [
 // },
 {
   title: 'Manufacturing plant',
+  name: 'mfg',
   startingPlayer: {
     year: 2016,
     money: 10000,

@@ -1,15 +1,14 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 
-import Levers from './levers'
+import Levers from '../constants/levers'
 import LeversRow from './levers-row.jsx'
 
 export default class LeversTable extends Component {
   propTypes: {
     settings: React.PropTypes.object.isRequired,
     includeLeverNames: React.PropTypes.array.isRequired,
-    onSetLever: React.PropTypes.Function.isRequired,
-    onSpendMoney: React.PropTypes.Function.isRequired
+    onImproveLever: React.PropTypes.Function.isRequired
   }
 
   render() {
@@ -24,8 +23,9 @@ export default class LeversTable extends Component {
           key={lever.name}
           lever={lever}
           settings={this.props.settings}
-          onSetLever={this.props.onSetLever}
-          onSpendMoney={this.props.onSpendMoney} />
+          calc={this.props.calc}
+          onImproveLever={this.props.onImproveLever}
+          onFetchCalc={this.props.onFetchCalc} />
       })
     return (
       <div>

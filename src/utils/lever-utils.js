@@ -1,4 +1,4 @@
-import Levers from './levers'
+import Levers from '../constants/levers'
 
 const CODE_VALS = [
   '1', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',

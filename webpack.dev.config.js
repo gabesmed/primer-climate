@@ -2,12 +2,12 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-source-map',
   entry: [
     'whatwg-fetch',
     'webpack-hot-middleware/client',
     './node_modules/bootstrap/dist/js/bootstrap.js',
-    './src/index',
+    './src/index.jsx',
     './static/style.scss'
   ],
   output: {
@@ -23,6 +23,9 @@ module.exports = {
       'window.Tether': 'tether'
     })
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
