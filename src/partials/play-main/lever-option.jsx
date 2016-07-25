@@ -1,123 +1,120 @@
-import _ from 'lodash'
-import $ from 'jquery'
-import React, { Component } from 'react'
-import { Link } from 'react-router'
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
-import LeverUtils from '../../utils/lever-utils'
+import LeverUtils from '../../utils/lever-utils';
 
 const ACTION_TABLE = [
   [10, 'minimal'],
   [20, 'ambitious'],
   [30, 'very ambitious'],
   [40, 'extremely ambitious']
-]
+];
 
 function encodeNext(settings, key) {
-  const curSetting = settings[key]
+  const curSetting = settings[key];
   // Check max
   if (curSetting >= 40) {
     return null;
   }
   const nextSettings = _.assign({}, settings, {
     [key]: curSetting + 1
-  })
-  return LeverUtils.encode(nextSettings)
+  });
+  return LeverUtils.encode(nextSettings);
 }
 
 export default class LeverOption extends Component {
-  propTypes: {
-    settings: React.PropTypes.object.isRequired,
-    lever: React.PropTypes.object.isRequired,
-    onImproveLever: React.PropTypes.Function.isRequired
-  }
 
-  componentDidUpdate() {
-    this.fetchCalc()
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    this.fetchCalc()  
+    this.fetchCalc();
   }
 
-  fetchCalc() {
-    const curEncoded = LeverUtils.encode(this.props.settings)
-    const nextEncoded = encodeNext(this.props.settings, this.props.lever.name)
-    if (!this.props.calc[curEncoded]) {
-      this.props.onFetchCalc(curEncoded)
-    }
-    if (nextEncoded && !this.props.calc[nextEncoded]) {
-      this.props.onFetchCalc(nextEncoded)
-    }
+  componentDidUpdate() {
+    this.fetchCalc();
   }
 
   getSetting() {
-    return this.props.settings[this.props.lever.name]
+    return this.props.settings[this.props.lever.name];
   }
 
   getActionPoints() {
-    return this.getSetting() - 10
+    return this.getSetting() - 10;
   }
 
   getNextSetting() {
-    return this.getSetting() + 1
+    return this.getSetting() + 1;
   }
 
   isPurchasable() {
-    return this.getSetting() < (this.props.lever.max || 40)
+    return this.getSetting() < (this.props.lever.max || 40);
   }
 
   handleClick() {
     if (this.isPurchasable()) {
-      this.props.onImproveLever(this.props.lever.name)
+      this.props.onImproveLever(this.props.lever.name);
+    }
+  }
+
+  fetchCalc() {
+    const curEncoded = LeverUtils.encode(this.props.settings);
+    const nextEncoded = encodeNext(this.props.settings, this.props.lever.name);
+    if (!this.props.calc[curEncoded]) {
+      this.props.onFetchCalc(curEncoded);
+    }
+    if (nextEncoded && !this.props.calc[nextEncoded]) {
+      this.props.onFetchCalc(nextEncoded);
     }
   }
 
   render() {
+    const curEncoded = LeverUtils.encode(this.props.settings);
+    const curResults = this.props.calc[curEncoded];
 
-    const curEncoded = LeverUtils.encode(this.props.settings)
-    const curResults = this.props.calc[curEncoded]
+    const nextEncoded = encodeNext(this.props.settings, this.props.lever.name);
+    const nextResults = nextEncoded && this.props.calc[nextEncoded];
 
-    const nextEncoded = encodeNext(this.props.settings, this.props.lever.name)
-    const nextResults = nextEncoded && this.props.calc[nextEncoded]
-
-    var category = this.props.lever.name.split('.')[0]
-    category = category[0].toUpperCase() + category.substring(1)
-    const actionLevel = _.findLast(ACTION_TABLE, (i) => {
-      return i[0] <= this.getSetting()
-    })
-    const baseline = this.props.lever.baseline
-    var val = this.props.lever.value(this.getSetting() - 10)
-    var improvement = 0
+    let category = this.props.lever.name.split('.')[0];
+    category = category[0].toUpperCase() + category.substring(1);
+    const actionLevel = _.findLast(ACTION_TABLE, (i) => (
+      i[0] <= this.getSetting()
+    ));
+    const baseline = this.props.lever.baseline;
+    const val = this.props.lever.value(this.getSetting() - 10);
+    let improvement = 0;
     if (baseline > 0) {
-      improvement = 100 * (val / baseline)
+      improvement = 100 * (val / baseline);
     }
-    var btn = ''
+    let btn = '';
     if (!nextEncoded) {
-      btn = 'At max'
+      btn = 'At max';
     } else if (!curResults || !nextResults) {
-      btn = 'Error'
+      btn = 'Error';
     } else if (curResults.state === 'requested' ||
                nextResults.state === 'requested') {
-      btn = 'Loading..'
+      btn = 'Loading..';
     } else {
-      var nextVal = this.props.lever.value(this.getNextSetting() - 1)
-      var curEmissions = curResults.data.cumulativeEmissions
-      var nextEmissions = nextResults.data.cumulativeEmissions
-      var savings = (curEmissions - nextEmissions).toFixed(2)
+      const curEmissions = curResults.data.cumulativeEmissions;
+      const nextEmissions = nextResults.data.cumulativeEmissions;
+      const savings = (curEmissions - nextEmissions).toFixed(2);
       btn = (
         <div>
-          <button className="btn btn-secondary" onClick={this.handleClick.bind(this)}>
+          <button className="btn btn-secondary" onClick={this.handleClick}>
             Improve for $100
           </button>
           <div>Savings: {savings} gigatons</div>
         </div>
-      )
+      );
     }
-    var pct = 100 * this.getActionPoints() / 30;
+    const pct = 100 * this.getActionPoints() / 30;
     return (
       <div
         className="row" key={this.props.lever.name}
-        style={{borderTop: '1px solid #ccc', paddingTop: '5px'}}
+        style={{ borderTop: '1px solid #ccc', paddingTop: '5px' }}
       >
         <div className="col-sm-8">
           <div>
@@ -133,19 +130,30 @@ export default class LeverOption extends Component {
             <progress
               className="progress progress-striped"
               value={pct}
-              style={{marginBottom: 0}}
-              max="100">
+              style={{ marginBottom: 0 }}
+              max="100"
+            >
               {this.getActionPoints()} action points ({actionLevel[1]}
             </progress>
           </div>
           <div>
-            {val.toFixed(2)} {this.props.lever.unit} in 2050; {improvement.toFixed(1)}% of 2011 baseline
+            {val.toFixed(2)} {this.props.lever.unit} in 2050;
+            {improvement.toFixed(1)}% of 2011 baseline
           </div>
         </div>
         <div className="col-sm-4">
           {btn}
         </div>
       </div>
-    )
+    );
   }
 }
+
+LeverOption.propTypes = {
+  settings: React.PropTypes.object.isRequired,
+  scenario: React.PropTypes.object.isRequired,
+  calc: React.PropTypes.object.isRequired,
+  lever: React.PropTypes.object.isRequired,
+  onImproveLever: React.PropTypes.func.isRequired,
+  onFetchCalc: React.PropTypes.func.isRequired
+};

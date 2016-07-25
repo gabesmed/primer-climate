@@ -1,17 +1,16 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
-import { Link } from 'react-router'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
-import PlayResults from '../partials/play/results'
+import PlayResults from '../partials/play/results';
 
 export default class Play extends Component {
 
   componentDidMount() {
-    this.props.onStartScenario(this.props.params.scenarioName)
+    this.props.onStartScenario(this.props.params.scenarioName);
   }
 
   componentWillReceiveProps(nextProps) {
-    nextProps.onFetchCalc(nextProps.encoded)
+    nextProps.onFetchCalc(nextProps.encoded);
   }
 
   render() {
@@ -20,31 +19,31 @@ export default class Play extends Component {
     }
 
     // results
-    const results = this.props.calc[this.props.encoded]
+    const results = this.props.calc[this.props.encoded];
 
     // display
-    const yearNum = this.props.player.year - this.props.scenario.startingPlayer.year + 1
-    const numYears = this.props.scenario.numYears
+    const yearNum = this.props.player.year - this.props.scenario.startingPlayer.year + 1;
+    const numYears = this.props.scenario.numYears;
     const products = this.props.scenario.products.map((product) => {
-      const production = this.props.player.production[product.name]
+      const production = this.props.player.production[product.name];
       return (
         <div key={product.name}>
           {product.title}: {production.production}/year
         </div>
-      )
+      );
     });
     return (
       <div>
         <div>
-          <Link to={`/`}>&larr; back</Link>
+          <Link to={'/'}>&larr; back</Link>
         </div>
         <div className="row">
           <div className="col-sm-6">
             <h2>Your store</h2>
             <p>
-              Year: {this.props.player.year} ({yearNum}/{numYears})<br/>
-              Money: ${this.props.player.money}<br/>
-              Brand: {this.props.player.brand}<br/>
+              Year: {this.props.player.year} ({yearNum}/{numYears})<br />
+              Money: ${this.props.player.money}<br />
+              Brand: {this.props.player.brand}<br />
               Employees: {this.props.player.employees}
             </p>
             {products}
@@ -55,6 +54,16 @@ export default class Play extends Component {
         </div>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
+
+Play.propTypes = {
+  params: React.PropTypes.object.isRequired,
+  encoded: React.PropTypes.string.isRequired,
+  player: React.PropTypes.object.isRequired,
+  scenario: React.PropTypes.object.isRequired,
+  onStartScenario: React.PropTypes.func.isRequired,
+  calc: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node.isRequired
+};
