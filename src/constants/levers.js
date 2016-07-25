@@ -11,7 +11,7 @@ export default [{
   max: 3,
   unit: 'billion people',
   baseline: 6.97,
-  value: v => 10.9 - 0.13 * v,
+  value: v => 10.9 - 0.13 * v
 }, {
   num: 2,
   name: 'demographics.urbanization',
@@ -33,7 +33,7 @@ export default [{
   title: 'Freight distance',
   unit: 'trillion ton-kms',
   baseline: 85,
-  value: v => 85 * (1 + (1.46 - .0313 * v))
+  value: v => 85 * (1 + (1.46 - 0.0313 * v))
 }, {
   num: 5,
   name: 'lifestyle.travel.mode',
@@ -47,7 +47,7 @@ export default [{
   title: 'Occupancy & load',
   unit: 'average urban car load',
   baseline: 1.6,
-  value: v => 1.4 + .0166 * v
+  value: v => 1.4 + 0.0166 * v
 }, {
   num: 7,
   name: 'lifestyle.travel.carownership',
@@ -75,14 +75,14 @@ export default [{
   title: 'Lighting & appliance use',
   unit: 'large appliances',
   baseline: 4,
-  value: v => 6.3 - .073 * v
+  value: v => 6.3 - 0.073 * v
 }, {
   num: 16,
   name: 'lifestyle.homes.products',
   title: 'Product lifespan & demand',
   unit: 'years of lifespan of an urban gasoline vehicle',
   baseline: 12.5,
-  value: v => 12.5 + .123 * v
+  value: v => 12.5 + 0.123 * v
 }, {
   num: 33,
   name: 'lifestyle.diet.calories',
@@ -103,14 +103,14 @@ export default [{
   title: 'Type of meat',
   unit: 'percent from beef, lamb and goat',
   baseline: 22,
-  value: v => 28 - .6 * v
+  value: v => 28 - 0.6 * v
 }, {
   num: 8,
   name: 'tech.transport.efficiency',
   title: 'Transport efficiency',
   unit: 'liters of fuel per 100km',
   baseline: 8.6,
-  value: v => 5.9 - .076 * v
+  value: v => 5.9 - 0.076 * v
 }, {
   num: 9,
   name: 'tech.transport.electric',
@@ -124,7 +124,7 @@ export default [{
   title: 'Building insulation',
   unit: 'avg heat loss of urban residential building, GW/Mha deg C',
   baseline: 16.9,
-  value: v => 12 - .264 * v
+  value: v => 12 - 0.264 * v
 }, {
   num: 14,
   name: 'tech.buildings.temp',
@@ -152,28 +152,28 @@ export default [{
   title: 'Iron, steel & aluminum',
   unit: 'tons of CO2 per ton of steel produced',
   baseline: 1.97,
-  value: v => 1.97 - .014 * v
+  value: v => 1.97 - 0.014 * v
 }, {
   num: 19,
   name: 'tech.manufacturing.chemicals',
   title: 'Chemicals',
   unit: 'tons of CO2 per ton of high value chemicals',
   baseline: 1.09,
-  value: v => 1.09 - .0076 * v
+  value: v => 1.09 - 0.0076 * v
 }, {
   num: 20,
   name: 'tech.manufacturing.other',
   title: 'Paper & other',
   unit: 'tons of CO2 per ton of paper',
   baseline: 0.95,
-  value: v => 0.95 - .016 * v
+  value: v => 0.95 - 0.016 * v
 }, {
   num: 21,
   name: 'tech.manufacturing.cement',
   title: 'Cement',
   unit: 'tons of CO2 per ton of cement',
   baseline: 0.41,
-  value: v => 0.4 - .006666667 * v
+  value: v => 0.4 - 0.006666667 * v
 }, {
   num: 22,
   name: 'tech.ccs.manufacturing',
@@ -201,7 +201,7 @@ export default [{
   title: 'Fossil fuel efficiency',
   unit: 'Percent of fossil fuel plants using ultra efficient tech',
   baseline: 25,
-  value: v => 38 + .56666 * v
+  value: v => 38 + 0.56666 * v
 }, {
   num: 26,
   name: 'fuels.nuclear',
@@ -257,7 +257,7 @@ export default [{
   title: 'Bioenergy yields',
   unit: 'Avg W yield per sq meter',
   baseline: 0.4,
-  value: v => .48 + .0106 * v
+  value: v => 0.48 + 0.0106 * v
 }, {
   num: 41,
   name: 'fuels.bio.phase',
@@ -271,7 +271,7 @@ export default [{
   title: 'Crop yields',
   unit: 'food energy W per m^2',
   baseline: 0.1,
-  value: v => 0.1 + .0033 * v
+  value: v => 0.1 + 0.0033 * v
 }, {
   num: 38,
   name: 'land.food.livestock.grain',
@@ -285,14 +285,14 @@ export default [{
   title: 'Livestock (pasture fed)',
   unit: 'cattle density, animals per hectare',
   baseline: 0.6,
-  value: v => 0.7 + .01466 * v
+  value: v => 0.7 + 0.01466 * v
 }, {
   num: 48,
   name: 'land.food.waste',
   title: 'Wastes & residues',
   unit: 'energy from biocrops, W/m^2',
   baseline: 0.4,
-  value: v => 0.48 + .010666 * v
+  value: v => 0.48 + 0.010666 * v
 }, {
   num: 42,
   name: 'land.use.surplus',
@@ -313,14 +313,14 @@ export default [{
   title: 'Biochar',
   unit: 'Gigatons of CO2 removed/year',
   baseline: 0,
-  value: v => 0 + .11 * v
+  value: v => 0 + 0.11 * v
 }, {
   num: 44,
   name: 'future.ggr.aircapture',
   title: 'Direct air capture',
   unit: 'Gigatons of CO2 removed/year',
   baseline: 0,
-  value: v => 0 + .333333333 * v
+  value: v => 0 + 0.333333333 * v
 }, {
   num: 45,
   name: 'future.ggr.ocean',

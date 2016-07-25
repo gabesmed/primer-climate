@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import $ from 'jquery'
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import descriptions from '../../constants/descriptions.json'
 import LeverUtils from '../../utils/lever-utils'
 
 const ACTION_TABLE = [
@@ -113,22 +113,7 @@ export default class LeverOption extends Component {
         </div>
       )
     }
-    var pageUrl = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${this.props.lever.num}/en`
-
-    var desc = descriptions.descriptions[this.props.lever.num]
-    // 0, 
-    // "Lever", 
-    // "Situation today", 
-    // "Interactions with other levers", 
-    // "One-pager context", 
-    // "Things to consider", 
-    // "1-pager Level 1", 
-    // "1-pager Level 2", 
-    // "1-pager Level 3", 
-    // "1-pager Level 4"
-    var onePager = desc[5 + Math.floor(this.getSetting() / 10)]
     var pct = 100 * this.getActionPoints() / 30;
-
     return (
       <div
         className="row" key={this.props.lever.name}
@@ -140,8 +125,9 @@ export default class LeverOption extends Component {
               {this.props.lever.title}
             </strong>
             &nbsp;
-            <a title={onePager}>More info</a>&nbsp;
-            <a href={pageUrl}>See page</a>
+            <Link to={`/play/${this.props.scenario.name}/info/${this.props.lever.name}`}>
+              More info
+            </Link>
           </div>
           <div>
             <progress

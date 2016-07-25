@@ -73,4 +73,4 @@ export default [{
 }, {
   title: 'World Nuclear Assoc (Largo)',
   encoded: '22qqo223322jt332qqqpq23323qoqr22223h32333q11111fB2211111111'
-}]
+}];

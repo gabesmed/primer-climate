@@ -10,7 +10,7 @@ export default class PlayMain extends Component {
           <LeverOptions
             calc={this.props.calc}
             settings={this.props.levers}
-            includeLeverNames={this.props.scenario.leverNames}
+            scenario={this.props.scenario}
             onImproveLever={this.props.onImproveLever}
             onFetchCalc={this.props.onFetchCalc} />
         </div>

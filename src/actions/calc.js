@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
 function requestCalc(encoded) {
-  return { type: 'REQUEST_CALC', encoded: encoded }
+  return { type: 'REQUEST_CALC', encoded: encoded };
 }
 
 function receiveCalc(encoded, result) {
@@ -9,7 +9,7 @@ function receiveCalc(encoded, result) {
     type: 'RECEIVE_CALC',
     encoded: encoded,
     result: result
-  }
+  };
 }
 
 function processResponse(data) {
@@ -17,11 +17,11 @@ function processResponse(data) {
     lowEstimate: data[0].dashboard['temperature change Low'][1],
     highEstimate: data[0].dashboard['temperature change High'][1],
     cumulativeEmissions: data[0].dashboard['cum GHG emissions projected'][1]
-  }
+  };
 }
 
 function shouldFetchCalc(state, encoded) {
-  return !state[encoded]
+  return !state[encoded];
 }
 
 function fetchCalc(encoded) {
@@ -31,20 +31,19 @@ function fetchCalc(encoded) {
     fetch(`/calc/${encoded}`)
       .then(response => response.json())
       .then(data => {
-        dispatch(receiveCalc(encoded, processResponse(data)))
+        dispatch(receiveCalc(encoded, processResponse(data)));
       })
       .catch(err => {
-        console.trace(err)
-      })
-  }
+        console.trace(err);
+      });
+  };
 }
 
 export function fetchCalcIfNeeded(encoded) {
   return function (dispatch, getState) {
     if (shouldFetchCalc(getState().calc, encoded)) {
-      return dispatch(fetchCalc(encoded))
-    } else {
-      return Promise.resolve()
+      return dispatch(fetchCalc(encoded));
     }
-  }
+    return Promise.resolve();
+  };
 }
