@@ -21,6 +21,9 @@ function processResponse(data) {
 }
 
 function shouldFetchCalc(state, encoded) {
+  if (!encoded || encoded.length !== 59) {
+    throw new Error(`Invalid calc request ${encoded}`);
+  }
   return !state[encoded];
 }
 

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
 import { fetchCalcIfNeeded } from '../actions/calc';
-import { startScenario } from '../actions/play';
+import { startScenario, nextYear } from '../actions/play';
 import Play from '../components/play';
 
 const mapStateToProps = (state) => ({
   calc: state.calc,
-  encoded: state.play.encoded,
-  levers: state.play.levers,
+  leverSettingsEncoded: state.play.leverSettingsEncoded,
+  leverSettings: state.play.leverSettings,
   player: state.play.player,
   scenario: state.play.scenario
 });
@@ -15,6 +15,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onStartScenario: (scenarioName) => {
     dispatch(startScenario(scenarioName));
+  },
+  onNextYear: () => {
+    dispatch(nextYear());
   },
   onFetchCalc: (encoded) => {
     dispatch(fetchCalcIfNeeded(encoded));

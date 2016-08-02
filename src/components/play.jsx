@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { IndexLink, Link } from 'react-router';
 
 import PlayResults from '../partials/play/results';
 
 export default class Play extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleNextYearClick = this.handleNextYearClick.bind(this);
+  }
 
   componentDidMount() {
     this.props.onStartScenario(this.props.params.scenarioName);
   }
 
   componentWillReceiveProps(nextProps) {
-    nextProps.onFetchCalc(nextProps.encoded);
+    nextProps.onFetchCalc(nextProps.leverSettingsEncoded);
+  }
+
+  handleNextYearClick() {
+    this.props.onNextYear();
   }
 
   render() {
@@ -19,11 +28,15 @@ export default class Play extends Component {
     }
 
     // results
-    const results = this.props.calc[this.props.encoded];
+    const results = this.props.calc[this.props.leverSettingsEncoded];
 
     // display
-    const yearNum = this.props.player.year - this.props.scenario.startingPlayer.year + 1;
+    const startingYear = this.props.scenario.startingYear;
+    const yearNum = this.props.player.year + 1;
+    const currentYear = startingYear + this.props.player.year;
     const numYears = this.props.scenario.numYears;
+    const nextYear = currentYear + 1;
+
     const products = this.props.scenario.products.map((product) => {
       const production = this.props.player.production[product.name];
       return (
@@ -39,19 +52,54 @@ export default class Play extends Component {
         </div>
         <div className="row">
           <div className="col-sm-6">
-            <h2>Your store</h2>
-            <p>
-              Year: {this.props.player.year} ({yearNum}/{numYears})<br />
-              Money: ${this.props.player.money}<br />
-              Brand: {this.props.player.brand}<br />
-              Employees: {this.props.player.employees}
-            </p>
+            Year: {currentYear} ({yearNum}/{numYears})<br />
+            Money: ${this.props.player.money}<br />
+            Brand: {this.props.player.brand}<br />
+            Employees: {this.props.player.employees}
             {products}
           </div>
           <div className="col-sm-6">
-            <PlayResults results={results} />
+            <PlayResults
+              leverSettingsEncoded={this.props.leverSettingsEncoded}
+              results={results} />
           </div>
         </div>
+
+        <div className="pull-xs-right">
+          <button
+            className="btn btn-primary"
+            onClick={this.handleNextYearClick}>
+            Proceed to {nextYear}
+          </button>
+        </div>
+
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <IndexLink
+              activeClassName="active"
+              className="nav-link"
+              to={`/play/${this.props.params.scenarioName}`}>
+              Budget
+            </IndexLink>
+          </li>
+          <li className="nav-item">
+            <Link
+              activeClassName="active"
+              className="nav-link"
+              to={`/play/${this.props.params.scenarioName}/business`}>
+              Business Forecast
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              activeClassName="active"
+              className="nav-link"
+              to={`/play/${this.props.params.scenarioName}/environment`}>
+              Environment Forecast
+            </Link>
+          </li>
+        </ul>
+
         {this.props.children}
       </div>
     );
@@ -59,11 +107,12 @@ export default class Play extends Component {
 }
 
 Play.propTypes = {
-  params: React.PropTypes.object.isRequired,
-  encoded: React.PropTypes.string.isRequired,
-  player: React.PropTypes.object.isRequired,
-  scenario: React.PropTypes.object.isRequired,
-  onStartScenario: React.PropTypes.func.isRequired,
   calc: React.PropTypes.object.isRequired,
+  leverSettingsEncoded: React.PropTypes.string,
+  onStartScenario: React.PropTypes.func.isRequired,
+  onNextYear: React.PropTypes.func.isRequired,
+  params: React.PropTypes.object.isRequired,
+  player: React.PropTypes.object,
+  scenario: React.PropTypes.object,
   children: React.PropTypes.node.isRequired
 };

@@ -15,6 +15,9 @@ function encodeNumber(number) {
 }
 
 function encode(levers) {
+  if (!levers) {
+    throw new Error('Passed null to encode');
+  }
   const array = new Array(59).fill(1);
   Levers.forEach((lever) => {
     array[lever.num - 1] = encodeNumber(levers[lever.name]);
@@ -31,6 +34,9 @@ function decodeDigit(digit) {
 }
 
 function decode(encoded) {
+  if (!encoded) {
+    throw new Error('Passed null to decode');
+  }
   const levers = {};
   Levers.forEach((lever) => {
     const digit = encoded[lever.num - 1];

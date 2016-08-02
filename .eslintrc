@@ -17,6 +17,7 @@
     "no-unused-vars": [2, {
       "vars": "all",
       "args": "none"
-    }]
+    }],
+    "react/jsx-closing-bracket-location": [2, "after-props"]
   }
 }

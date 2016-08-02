@@ -7,11 +7,11 @@ import Levers from '../constants/levers';
 
 export default function Menu() {
   const scenarios = Scenarios.map((scenario, i) => {
-    const leverTitles = scenario.leverNames
-      .map((leverName) => {
-        const lever = _.find(Levers, ['name', leverName]);
+    const leverTitles = scenario.levers
+      .map((l) => {
+        const lever = _.find(Levers, ['name', l.name]);
         return (
-          <li style={{ listStyleType: 'none' }} key={leverName}>
+          <li style={{ listStyleType: 'none' }} key={l.name}>
             {lever.title}
           </li>
         );
@@ -27,8 +27,7 @@ export default function Menu() {
           </ul>
           <Link
             className="btn btn-primary btn-block"
-            to={`/play/${scenario.name}`}
-          >
+            to={`/play/${scenario.name}`}>
             Select
           </Link>
         </div>

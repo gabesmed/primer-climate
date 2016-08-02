@@ -33,26 +33,73 @@ export default [
     title: 'Manufacturing plant',
     name: 'mfg',
     startingPlayer: {
-      year: 2016,
-      money: 10000,
+      money: 2000000,
       brand: 0,
       productionRate: 0,
       employees: 0
     },
+    startingYear: 2016,
     numYears: 30,
-    leverNames: [
-      'tech.manufacturing.materials',
-      'tech.manufacturing.metals',
-      'tech.manufacturing.chemicals',
-      'tech.manufacturing.other',
-      'tech.manufacturing.cement',
-      'lifestyle.travel.freightdist'
-    ],
+    levers: [{
+      name: 'tech.manufacturing.materials',
+      scaling: 1
+    }, {
+      name: 'tech.manufacturing.metals',
+      scaling: 1
+    }, {
+      name: 'tech.manufacturing.chemicals',
+      scaling: 1
+    }, {
+      name: 'tech.manufacturing.other',
+      scaling: 1
+    }, {
+      name: 'tech.manufacturing.cement',
+      scaling: 1
+    }, {
+      name: 'lifestyle.travel.freightdist',
+      // one 100,000x of world's scale
+      scaling: 1.0 / 100000.0,
+      unit: 'average ton-miles freight distance',
+      // 0.6 miles is 1 km, and
+      // 1 ton-km is a trillionth of a trillion ton-kms
+      unitScale: 0.621371 / 1000000000000.0
+    }],
     products: [
       { name: 'a', title: 'Widget A' },
       { name: 'b', title: 'Widget B' },
       { name: 'c', title: 'Widget C' }
-    ]
+    ],
+    budgetOptions: [{
+      title: 'More recycled steel',
+      cost: 3000,
+      leverName: 'tech.manufacturing.materials',
+      leverDelta: 1
+    }, {
+      title: 'Improve steel mfg',
+      cost: 3000,
+      leverName: 'tech.manufacturing.metals',
+      leverDelta: 1
+    }, {
+      title: 'Improve CO2 from chemicals',
+      cost: 3000,
+      leverName: 'tech.manufacturing.chemicals',
+      leverDelta: 1
+    }, {
+      title: 'Improve CO2 from other',
+      cost: 3000,
+      leverName: 'tech.manufacturing.other',
+      leverDelta: 1
+    }, {
+      title: 'Improve CO2 from cement',
+      cost: 3000,
+      leverName: 'tech.manufacturing.cement',
+      leverDelta: 1
+    }, {
+      title: 'Lessen freight distance',
+      cost: 3000,
+      leverName: 'lifestyle.travel.freightdist',
+      leverDelta: 1
+    }]
   }
   // {
   //   title: 'Real estate developer',

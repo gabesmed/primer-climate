@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function PlayResults({ results }) {
+export default function PlayResults({ encoded, results }) {
   if (!results) {
     return <div>No results.</div>;
   }
@@ -21,10 +21,15 @@ export default function PlayResults({ results }) {
       <h4>The World in 2100</h4>
       <div>Cumulative Emissions: {emissions} Gigatons</div>
       <div>Global Mean Temp: {estimate}</div>
+      <div><a href={`http://tool.globalcalculator.org/globcalc.html?levers=${encoded}/dashboard/en`}>
+        Open scenario in calculator
+      </a>
+      </div>
     </div>
   );
 }
 
 PlayResults.propTypes = {
+  encoded: React.PropTypes.string,
   results: React.PropTypes.object
 };
