@@ -6,7 +6,6 @@ module.exports = {
   entry: [
     'whatwg-fetch',
     'webpack-hot-middleware/client',
-    './node_modules/bootstrap/dist/js/bootstrap.js',
     './src/index.jsx',
     './static/style.scss'
   ],

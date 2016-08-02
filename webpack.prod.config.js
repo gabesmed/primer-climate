@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'whatwg-fetch',
-    './src/index',
+    './src/index.jsx',
     './static/style.scss'
   ],
   output: {
