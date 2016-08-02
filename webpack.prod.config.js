@@ -32,6 +32,9 @@ module.exports = {
       'window.Tether': 'tether'
     })
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
