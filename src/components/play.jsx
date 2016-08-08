@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { IndexLink, Link } from 'react-router';
 
@@ -32,38 +33,82 @@ export default class Play extends Component {
 
     // display
     const startingYear = this.props.scenario.startingYear;
-    const yearNum = this.props.player.year + 1;
-    const currentYear = startingYear + this.props.player.year;
     const numYears = this.props.scenario.numYears;
+    const allYears = _.range(startingYear, startingYear + numYears);
+    const pastYears = allYears.slice(0, this.props.player.year);
+    const futureYears = allYears.slice(this.props.player.year + 1);
+    const currentYear = startingYear + this.props.player.year;
     const nextYear = currentYear + 1;
 
-    const products = this.props.scenario.products.map((product) => {
-      const production = this.props.player.production[product.name];
-      return (
+    const pastYearLinks = pastYears
+      .map((year) => (
+        <li key={year} className="nav-item">
+          <span className="nav-link" href="#">{year}</span>
+        </li>
+      ));
+
+    const futureYearLinks = futureYears
+      .map((year) => (
+        <li key={year} className="nav-item">
+          <span className="nav-link disabled" href="#">{year}</span>
+        </li>
+      ));
+
+    const production = this.props.player.products
+      .filter(product => product.isActive)
+      .map((product) => (
         <div key={product.name}>
-          {product.title}: {production.production}/year
+          {product.title}: {product.productionPerYear}
         </div>
-      );
-    });
+      ));
+
+    const demand = this.props.player.products
+      .filter(product => product.isActive)
+      .map((product) => (
+        <div key={product.name}>
+          {product.title}: {product.demandPerYear}
+        </div>
+      ));
+
     return (
       <div>
-        <div>
-          <Link to={'/'}>&larr; back</Link>
+        <div className="row">
+          <div className="col-sm-12">
+            <ul className="nav nav-pills" style={{ overflow: 'hidden', height: '2.5em' }}>
+              <li className="nav-item">
+                <Link to={'/'} className="nav-link">&larr; back</Link>
+              </li>
+              {pastYearLinks}
+              <li className="nav-item">
+                <span className="nav-link active">{currentYear}</span>
+              </li>
+              {futureYearLinks}
+            </ul>
+          </div>
         </div>
         <div className="row">
-          <div className="col-sm-6">
-            Year: {currentYear} ({yearNum}/{numYears})<br />
+          <div className="col-sm-2">
+            <h6>Business</h6>
             Money: ${this.props.player.money}<br />
-            Brand: {this.props.player.brand}<br />
-            Employees: {this.props.player.employees}
-            {products}
+            Brand: {this.props.player.brand}%<br />
+            Employees: {this.props.player.numEmployees}
+          </div>
+          <div className="col-sm-2">
+            <h6>Production/year</h6>
+            {production}
+          </div>
+          <div className="col-sm-2">
+            <h6>Demand/year</h6>
+            {demand}
           </div>
           <div className="col-sm-6">
+            <h6>The World in 2100</h6>
             <PlayResults
               leverSettingsEncoded={this.props.leverSettingsEncoded}
               results={results} />
           </div>
         </div>
+        <br />
 
         <div className="pull-xs-right">
           <button
@@ -99,7 +144,7 @@ export default class Play extends Component {
             </Link>
           </li>
         </ul>
-
+        <br />
         {this.props.children}
       </div>
     );

@@ -36,9 +36,9 @@ export default class BudgetOption extends Component {
 
   render() {
     let disabled = false;
-    let buttonTitle = '';
+    let buttonTitle = this.props.values.title;
     if (this.props.isSelected) {
-      buttonTitle = 'Deselect';
+      buttonTitle = this.props.values.title;
     } else if (this.props.values.cost > this.props.budgetAvailable) {
       buttonTitle = 'Too expensive';
       disabled = true;
@@ -46,18 +46,19 @@ export default class BudgetOption extends Component {
       this.props.leverSettings[this.props.values.leverName] === 40) {
       buttonTitle = 'At max';
       disabled = true;
-    } else {
-      buttonTitle = 'Purchase';
     }
+    const buttonSelectedClass = this.props.isSelected ? 'btn-primary' :
+      'btn-secondary';
+    const buttonClassName = `btn btn-block ${buttonSelectedClass}`;
     const button = (
       <button
-        className="btn btn-block btn-secondary"
+        className={buttonClassName}
         disabled={disabled}
         onClick={this.props.onToggle}>
         {buttonTitle}
       </button>
     );
-    const cardClassName = this.props.isSelected ? 'card card-info' : 'card';
+    // const cardClassName = this.props.isSelected ? 'card card-info' : 'card';
 
     const effects = [['Cost', `$${this.props.values.cost}`]];
 
@@ -72,30 +73,29 @@ export default class BudgetOption extends Component {
       const nextSettings = this.getProspectiveSettings();
       const nextEncoded = LeverUtils.encode(nextSettings);
       const nextCalc = _.get(this.props.calc[nextEncoded], 'data');
-      let leverEffect = 'Calculating...';
-      if (nextCalc) {
-        const curSetting = this.props.leverSettings[lever.name];
-        const curValue = lever.value(curSetting - 10);
-        const curScaled = (curValue *
-          (scenarioLever.scaling || 1) /
-          (scenarioLever.unitScale || 1));
-        const unit = scenarioLever.unit || lever.unit;
-        const nextSetting = nextSettings[lever.name];
-        const nextValue = lever.value(nextSetting - 10);
-        const nextScaled = (nextValue *
-          (scenarioLever.scaling || 1) /
-          (scenarioLever.unitScale || 1));
-
-        leverEffect = `To ${nextScaled.toFixed(2)} ${unit} (from ${curScaled.toFixed(2)})`;
-      }
+      const curSetting = this.props.leverSettings[lever.name];
+      const curValue = lever.value(curSetting - 10);
+      const curScaled = (curValue *
+        (scenarioLever.scaling || 1) /
+        (scenarioLever.unitScale || 1));
+      const unit = scenarioLever.unit || lever.unit;
+      const nextSetting = nextSettings[lever.name];
+      const nextValue = lever.value(nextSetting - 10);
+      const nextScaled = (nextValue *
+        (scenarioLever.scaling || 1) /
+        (scenarioLever.unitScale || 1));
+      const leverEffect = `To ${nextScaled.toFixed(2)} ${unit} (from ${curScaled.toFixed(2)})`;
       effects.push([leverLink, leverEffect]);
+
+      let emissionsEffect = 'Calculating...';
       if (curCalc && nextCalc) {
         const curEmissions = curCalc.cumulativeEmissions;
         const nextEmissions = nextCalc.cumulativeEmissions;
         const diff = nextEmissions - curEmissions;
         const dir = diff > 0 ? '+' : '-';
-        effects.push(['Emissions', `${dir}${Math.abs(diff).toFixed(2)} GTn`]);
+        emissionsEffect = `${dir}${Math.abs(diff).toFixed(2)} GTn`;
       }
+      effects.push(['Emissions', emissionsEffect]);
     }
 
     const effectsList = effects.map((effect, i) => (
@@ -106,16 +106,13 @@ export default class BudgetOption extends Component {
     ));
 
     return (
-      <div key={this.props.values.leverName} className={cardClassName}>
-        <div className="card-header">
-          {this.props.values.title}
-        </div>
-        <div className="card-block">
-          <p className="card-text">
-            {effectsList}
-          </p>
+      <div key={this.props.values.leverName} className="budget-option">
+        <div>
           {button}
         </div>
+        <p className="card-text">
+          {effectsList}
+        </p>
       </div>
     );
   }

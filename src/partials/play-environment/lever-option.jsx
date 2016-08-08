@@ -26,17 +26,6 @@ export default function LeverOption({ lever, scenario, settings }) {
       className="row" key={lever.name}
       style={{ borderTop: '1px solid #ccc', paddingTop: '5px' }}>
       <div className="col-sm-6">
-        <p>
-          <Link to={`/play/${scenario.name}/environment/${lever.name}`}>
-            <strong>{lever.title}</strong>
-          </Link>
-          <br />
-        {val.toFixed(2)} {lever.unit} in 2050<br />
-        {delta > 0 ? 'up' : 'down'} {Math.abs(delta).toFixed(2)}% from 2011
-        ({lever.baseline} {lever.unit})
-        </p>
-      </div>
-      <div className="col-sm-6">
         <progress
           className="progress progress-striped"
           value={pct}
@@ -44,6 +33,14 @@ export default function LeverOption({ lever, scenario, settings }) {
           max="100">
           {setting - 10} action points ({actionLevel[1]}
         </progress>
+        <Link to={`/play/${scenario.name}/environment/${lever.name}`}>
+          <strong>{lever.title}</strong>
+        </Link>
+      </div>
+      <div className="col-sm-6">
+        {val.toFixed(2)} {lever.unit} in 2050<br />
+        {delta > 0 ? 'up' : 'down'} {Math.abs(delta).toFixed(2)}% from 2011
+        ({lever.baseline} {lever.unit})
       </div>
     </div>
   );

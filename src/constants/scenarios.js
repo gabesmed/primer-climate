@@ -35,9 +35,11 @@ export default [
     startingPlayer: {
       money: 2000000,
       brand: 0,
-      productionRate: 0,
-      employees: 0
+      numEmployees: 1,
+      employeeSalary: 100000
     },
+    // RCP 8.5
+    startingPathway: 'g311111111111111c1b111cybihogjgi233ssr2eAs11111gA2211111111',
     startingYear: 2016,
     numYears: 30,
     levers: [{
@@ -64,42 +66,69 @@ export default [
       // 1 ton-km is a trillionth of a trillion ton-kms
       unitScale: 0.621371 / 1000000000000.0
     }],
-    products: [
-      { name: 'a', title: 'Widget A' },
-      { name: 'b', title: 'Widget B' },
-      { name: 'c', title: 'Widget C' }
-    ],
-    budgetOptions: [{
-      title: 'More recycled steel',
-      cost: 3000,
-      leverName: 'tech.manufacturing.materials',
-      leverDelta: 1
+    products: [{
+      name: 'a',
+      title: 'Widget A',
+      productionPerYear: 0,
+      demandPerYear: 1000,
+      costToProduce: 5,
+      salePrice: 10,
+      isActive: true
     }, {
-      title: 'Improve steel mfg',
-      cost: 3000,
-      leverName: 'tech.manufacturing.metals',
-      leverDelta: 1
+      name: 'b',
+      title: 'Widget B',
+      productionPerYear: 0,
+      demandPerYear: 1000,
+      costToProduce: 20,
+      salePrice: 50,
+      isActive: false
     }, {
-      title: 'Improve CO2 from chemicals',
-      cost: 3000,
-      leverName: 'tech.manufacturing.chemicals',
-      leverDelta: 1
-    }, {
-      title: 'Improve CO2 from other',
-      cost: 3000,
-      leverName: 'tech.manufacturing.other',
-      leverDelta: 1
-    }, {
-      title: 'Improve CO2 from cement',
-      cost: 3000,
-      leverName: 'tech.manufacturing.cement',
-      leverDelta: 1
-    }, {
-      title: 'Lessen freight distance',
-      cost: 3000,
-      leverName: 'lifestyle.travel.freightdist',
-      leverDelta: 1
-    }]
+      name: 'c',
+      title: 'Widget C',
+      productionPerYear: 0,
+      demandPerYear: 1000,
+      costToProduce: 100,
+      salePrice: 250,
+      isActive: false
+    }],
+    budgetOptions: [
+      {
+        title: 'Hire an employee',
+        cost: 100000,
+        employeeDelta: 1
+      },
+      {
+        title: 'More recycled steel',
+        cost: 300000,
+        leverName: 'tech.manufacturing.materials',
+        leverDelta: 1
+      }, {
+        title: 'Improve steel mfg',
+        cost: 300000,
+        leverName: 'tech.manufacturing.metals',
+        leverDelta: 1
+      }, {
+        title: 'Improve CO2 from chemicals',
+        cost: 300000,
+        leverName: 'tech.manufacturing.chemicals',
+        leverDelta: 1
+      }, {
+        title: 'Improve CO2 from other',
+        cost: 300000,
+        leverName: 'tech.manufacturing.other',
+        leverDelta: 1
+      }, {
+        title: 'Improve CO2 from cement',
+        cost: 300000,
+        leverName: 'tech.manufacturing.cement',
+        leverDelta: 1
+      }, {
+        title: 'Lessen freight distance',
+        cost: 300000,
+        leverName: 'lifestyle.travel.freightdist',
+        leverDelta: 1
+      }
+    ]
   }
   // {
   //   title: 'Real estate developer',

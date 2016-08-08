@@ -150,28 +150,28 @@ export default [{
   num: 18,
   name: 'tech.manufacturing.metals',
   title: 'Iron, steel & aluminum',
-  unit: 'tons of CO2 per ton of steel produced',
+  unit: 'tons of CO₂ per ton of steel produced',
   baseline: 1.97,
   value: v => 1.97 - 0.014 * v
 }, {
   num: 19,
   name: 'tech.manufacturing.chemicals',
   title: 'Chemicals',
-  unit: 'tons of CO2 per ton of high value chemicals',
+  unit: 'tons of CO₂ per ton of chemicals',
   baseline: 1.09,
   value: v => 1.09 - 0.0076 * v
 }, {
   num: 20,
   name: 'tech.manufacturing.other',
   title: 'Paper & other',
-  unit: 'tons of CO2 per ton of paper',
+  unit: 'tons of CO₂ per ton of paper',
   baseline: 0.95,
   value: v => 0.95 - 0.016 * v
 }, {
   num: 21,
   name: 'tech.manufacturing.cement',
   title: 'Cement',
-  unit: 'tons of CO2 per ton of cement',
+  unit: 'tons of CO₂ per ton of cement',
   baseline: 0.41,
   value: v => 0.4 - 0.006666667 * v
 }, {
@@ -311,44 +311,52 @@ export default [{
   num: 43,
   name: 'future.ggr.biochar',
   title: 'Biochar',
-  unit: 'Gigatons of CO2 removed/year',
+  unit: 'Gigatons of CO₂ removed/year',
   baseline: 0,
-  value: v => 0 + 0.11 * v
+  value: v => 0 + 0.11 * v,
+  hidden: true
 }, {
   num: 44,
   name: 'future.ggr.aircapture',
   title: 'Direct air capture',
-  unit: 'Gigatons of CO2 removed/year',
+  unit: 'Gigatons of CO₂ removed/year',
   baseline: 0,
-  value: v => 0 + 0.333333333 * v
+  value: v => 0 + 0.333333333 * v,
+  hidden: true
 }, {
   num: 45,
   name: 'future.ggr.ocean',
   title: 'Ocean fertilization',
-  unit: 'Ggatons of CO2 removed/year',
-  value: v => 0 + 1.0 * v
+  unit: 'Ggatons of CO₂ removed/year',
+  value: v => 0 + 1.0 * v,
+  hidden: true
 }, {
   num: 46,
   name: 'future.ggr.weathering.ocean',
   title: 'Enhanced weathering (oceanic)',
-  value: v => {}
+  value: v => {},
+  hidden: true
 }, {
   num: 47,
   name: 'future.ggr.weathering.earth',
   title: 'Enhanced weathering (terrestrial)',
-  value: v => {}
+  value: v => {},
+  hidden: true
 }, {
   num: 49,
   name: 'future.trajectory.emissions',
   title: 'Emissions trajectory',
-  value: v => {}
+  value: v => {},
+  hidden: true
 }, {
   num: 50,
   name: 'physics.co2',
-  title: 'Atmospheric CO2 fraction'
+  title: 'Atmospheric CO₂ fraction',
+  hidden: true
 }, {
   num: 51,
   name: 'physics.confidence',
   title: 'Confidence in climate models',
-  max: 2
+  max: 2,
+  hidden: true
 }];

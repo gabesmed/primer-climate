@@ -1,13 +1,13 @@
 import _ from 'lodash';
 
 import Scenarios from '../constants/scenarios';
-import StockPathways from '../constants/stock-pathways';
 import LeverUtils from '../utils/lever-utils';
 
 const initialState = {
   scenario: null,
   player: null,
   budget: null,
+  history: null,
   leverSettings: null,
   leverSettingsEncoded: null,
   budgetSettings: null,
@@ -16,14 +16,10 @@ const initialState = {
 
 function getStartingPlayer(scenario) {
   const player = _.assign({
-    production: {},
+    products: scenario.products.map((product) => (_.assign({
+    }, product))),
     year: 0
   }, scenario.startingPlayer);
-  scenario.products.forEach((product) => {
-    player.production[product.name] = {
-      production: 0
-    };
-  });
   return player;
 }
 
@@ -32,6 +28,10 @@ function getNewBudget(scenario, year) {
     isSelected: false,
     values: _.assign({}, opt)
   }));
+}
+
+function getHistoryEntryFromPlayer() {
+  return {};
 }
 
 function getSettingsForBudget(currentSettings, budget) {
@@ -49,16 +49,17 @@ function getSettingsForBudget(currentSettings, budget) {
 function playReducer(state = initialState, action) {
   switch (action.type) {
     case 'START_SCENARIO': {
-      const rcp85 = _.find(StockPathways, ['title', 'RCP 8.5']);
       const scenario = _.find(Scenarios, ['name', action.scenarioName]);
       const player = getStartingPlayer(scenario);
       const budget = getNewBudget(scenario, 0);
-      const settingsEncoded = rcp85.encoded;
-      const settings = LeverUtils.decode(rcp85.encoded);
+      const settingsEncoded = scenario.startingPathway;
+      const settings = LeverUtils.decode(settingsEncoded);
+      const initialHistory = getHistoryEntryFromPlayer(player);
       return {
         scenario: scenario,
         player: player,
         budget: budget,
+        history: [initialHistory],
         leverSettingsEncoded: settingsEncoded,
         leverSettings: settings,
         budgetSettingsEncoded: settingsEncoded,
@@ -78,19 +79,30 @@ function playReducer(state = initialState, action) {
     }
     case 'NEXT_YEAR': {
       let newMoney = state.player.money;
+      let newNumEmployees = state.player.numEmployees;
+
+      // subtract cash for existing employees
+      newMoney -= state.player.numEmployees * state.player.employeeSalary;
+
+      // add new employees and subtract cash for budget options
       state.budget.forEach((budgetOption) => {
         if (budgetOption.isSelected) {
           newMoney -= budgetOption.values.cost;
+          newNumEmployees += (budgetOption.values.employeeDelta || 0);
         }
       });
       const newBudget = getNewBudget(state.scenario);
       const newPlayer = _.assign({}, state.player, {
         year: state.player.year + 1,
-        money: newMoney
+        money: newMoney,
+        numEmployees: newNumEmployees
       });
+      const latestHistory = getHistoryEntryFromPlayer(newPlayer);
+      const newHistory = [].concat(state.history, [latestHistory]);
       return _.assign({}, state, {
         player: newPlayer,
         budget: newBudget,
+        history: newHistory,
         // Apply budgeted settings to current
         leverSettings: state.budgetSettings,
         leverSettingsEncoded: state.budgetSettingsEncoded

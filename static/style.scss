@@ -1,10 +1,10 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
 .budget-option-rows {
-    .card {
+    .budget-option {
         width: 250px;
         float: left;
         margin: 0.25em;
-        min-height: 20em;
+        min-height: 10em;
     }
 }

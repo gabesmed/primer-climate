@@ -1,10 +1,11 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
 import Menu from './components/menu';
 import Play from './containers/play';
 import PlayEnvironment from './containers/play-environment';
 import PlayBudget from './containers/play-budget';
-import PlayBusiness from './components/play-business';
+import PlayBusiness from './containers/play-business';
 import PlayLeverInfo from './containers/play-lever-info';
 
 function InvalidPage() {

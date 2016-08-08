@@ -18,7 +18,6 @@ export default function PlayResults({ encoded, results }) {
   }
   return (
     <div>
-      <h4>The World in 2100</h4>
       <div>Cumulative Emissions: {emissions} Gigatons</div>
       <div>Global Mean Temp: {estimate}</div>
       <div><a href={`http://tool.globalcalculator.org/globcalc.html?levers=${encoded}/dashboard/en`}>
