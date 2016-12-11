@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import Descriptions from '../constants/descriptions.json';
 import Levers from '../constants/levers';
 
-export default function PlayLeverInfo({ params, leverSettings }) {
+export default function PlayLeverInfo({ params, pathway }) {
   const lever = _.find(Levers, ['name', params.leverName]);
   const pageUrl = `http://tool.globalcalculator.org/gc-lever-description-v23.html?id=${lever.num}/en`;
 
@@ -20,7 +20,7 @@ export default function PlayLeverInfo({ params, leverSettings }) {
   // "1-pager Level 2",
   // "1-pager Level 3",
   // "1-pager Level 4"
-  const setting = leverSettings[lever.name];
+  const setting = pathway[lever.name];
   const settingLevel = Math.floor(setting / 10) - 1;
   const levelDescs = [
     'Minimal action',
@@ -39,7 +39,7 @@ export default function PlayLeverInfo({ params, leverSettings }) {
   return (
     <div>
       <h2>
-        <Link to={`/play/${params.scenarioName}/environment`}>
+        <Link to={'/play/environment'}>
           Environment
         </Link> &rsaquo; {lever.title}
       </h2>
@@ -66,5 +66,5 @@ export default function PlayLeverInfo({ params, leverSettings }) {
 
 PlayLeverInfo.propTypes = {
   params: React.PropTypes.object.isRequired,
-  leverSettings: React.PropTypes.object.isRequired
+  pathway: React.PropTypes.object.isRequired
 };

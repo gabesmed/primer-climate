@@ -9,10 +9,10 @@ const ACTION_TABLE = [
   [40, 'extremely ambitious']
 ];
 
-export default function LeverOption({ lever, scenario, settings }) {
+export default function LeverOption({ lever, pathway }) {
   let category = lever.name.split('.')[0];
   category = category[0].toUpperCase() + category.substring(1);
-  const setting = settings[lever.name];
+  const setting = pathway[lever.name];
   const actionLevel = _.findLast(ACTION_TABLE, (i) => (
     i[0] <= setting
   ));
@@ -33,7 +33,7 @@ export default function LeverOption({ lever, scenario, settings }) {
           max="100">
           {setting - 10} action points ({actionLevel[1]}
         </progress>
-        <Link to={`/play/${scenario.name}/environment/${lever.name}`}>
+        <Link to={`/play/environment/${lever.name}`}>
           <strong>{lever.title}</strong>
         </Link>
       </div>
@@ -47,8 +47,7 @@ export default function LeverOption({ lever, scenario, settings }) {
 }
 
 LeverOption.propTypes = {
-  settings: React.PropTypes.object.isRequired,
-  scenario: React.PropTypes.object.isRequired,
+  pathway: React.PropTypes.object.isRequired,
   calc: React.PropTypes.object.isRequired,
   lever: React.PropTypes.object.isRequired
 };

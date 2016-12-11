@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 
-import { fetchCalcIfNeeded } from '../actions/calc';
-import { startScenario, nextYear } from '../actions/play';
-import Play from '../components/play';
+import { fetchCalcIfNeeded } from './actions/calc';
+import { startScenario, nextYear, respondToEvent } from './actions/play';
 
 const mapStateToProps = (state) => ({
   calc: state.calc,
-  leverSettingsEncoded: state.play.leverSettingsEncoded,
-  leverSettings: state.play.leverSettings,
+  pathway: state.play.pathway,
   player: state.play.player,
   scenario: state.play.scenario
 });
@@ -21,12 +19,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFetchCalc: (encoded) => {
     dispatch(fetchCalcIfNeeded(encoded));
+  },
+  onRespondToEvent: (event, choiceIndex) => {
+    dispatch(respondToEvent(event, choiceIndex));
   }
 });
 
-const PlayContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Play);
-
-export default PlayContainer;
+export default (component) => (
+  connect(mapStateToProps, mapDispatchToProps)(component)
+);

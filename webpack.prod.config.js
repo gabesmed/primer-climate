@@ -48,4 +48,4 @@ module.exports = {
       loaders: ['style', 'css', 'sass']
     }]
   }
-}
+};

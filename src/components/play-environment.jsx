@@ -1,30 +1,29 @@
 import _ from 'lodash';
 import React from 'react';
 
+import Scenario from '../constants/scenario';
 import Levers from '../constants/levers';
 import LeverOption from '../partials/play-environment/lever-option';
 
-export default function PlayEnvironment({ calc, leverSettings, scenario }) {
-  const leverOptions = scenario.levers.map((l) => {
+export default function PlayEnvironment({ calc, pathway }) {
+  const leverOptions = Scenario.levers.map((l) => {
     const lever = _.find(Levers, ['name', l.name]);
     return (
       <LeverOption
         key={lever.name}
         lever={lever}
-        scenario={scenario}
-        settings={leverSettings}
+        pathway={pathway}
         calc={calc} />
     );
   });
   const otherLeverOptions = Levers
-    .filter(lever => !_.find(scenario.levers, ['name', lever.name]))
+    .filter(lever => !_.find(Scenario.levers, ['name', lever.name]))
     .filter(lever => lever.hidden !== true)
     .map((lever => (
       <LeverOption
         key={lever.name}
         lever={lever}
-        scenario={scenario}
-        settings={leverSettings}
+        pathway={pathway}
         calc={calc} />
     )));
   return (
@@ -49,6 +48,5 @@ export default function PlayEnvironment({ calc, leverSettings, scenario }) {
 
 PlayEnvironment.propTypes = {
   calc: React.PropTypes.object.isRequired,
-  leverSettings: React.PropTypes.object.isRequired,
-  scenario: React.PropTypes.object.isRequired
+  pathway: React.PropTypes.object.isRequired
 };

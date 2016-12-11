@@ -1,11 +1,11 @@
-export function startScenario(scenarioName) {
-  return { type: 'START_SCENARIO', scenarioName: scenarioName };
+export function startScenario() {
+  return { type: 'startScenario' };
 }
 
-export function selectBudgetOption(index) {
-  return { type: 'SELECT_BUDGET_OPTION', index: index };
+export function respondToEvent(event, choiceIndex) {
+  return { type: 'respondToEvent', event: event, choiceIndex: choiceIndex };
 }
 
 export function nextYear() {
-  return { type: 'NEXT_YEAR' };
+  return { type: 'nextYear' };
 }

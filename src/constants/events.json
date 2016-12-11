@@ -1,0 +1,513 @@
+[
+  {
+    "type": "turn",
+    "title": "Automobiles Come Under Scrutiny", 
+    "desc": "Large chart in hand, your Transportation Minister suggests you take at a look at limiting automotive output. Uh oh. People aren't gonna like that.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "We can't get by without our cars!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Institute Alternate Day Driving Rules",
+        "deltas": {
+          "lifestyle.travel.mode": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Invest in public transportation, limit access to large / multiple autos",
+        "deltas": {
+          "lifestyle.travel.mode": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Limit Access to Automobiles",
+        "deltas": {
+          "lifestyle.travel.mode": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Homes Have Got to Change", 
+    "desc": "After touring several showcase green buildings, a scientist takes you aside and tells you that the home is one of biggest places an impact can be made.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Not in my backyard, hippie!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Require efficient (more costly) appliances with increased lifespans",
+        "deltas": {
+          "lifestyle.homes.appliances": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Cap hot water and energy use under penalty of fines",
+        "deltas": {
+          "lifestyle.homes.appliances": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Limit footprint and square footage of all new homes",
+        "deltas": {
+          "lifestyle.homes.appliances": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "For The Birds", 
+    "desc": "In the government cafeteria, over a bowl of lentils, a pressure groups tells you grim truth: how we eat is a major factor in climate change. The lentils go down funny.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "But hamburgers are a way of life!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Limit meat production to only high quality, low impact solutions-- at a cost",
+        "deltas": {
+          "lifestyle.diet.meatamount": 5
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Begin to institute a culture change to a primarily vegetarian diet",
+        "deltas": {
+          "lifestyle.diet.meatamount": 10
+        }
+      }, 
+      {
+        "will": -50, 
+        "title": "Begin to institute a culture change to less caloric intake per person",
+        "deltas": {
+          "lifestyle.diet.meatamount": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Builders Get Angry", 
+    "desc": "Your office is filled with a group of manufacturing lobbyists that are angry about rumors coming from your office that there are changes to manufacturing standards coming...", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Pour them all a scotch. You guys are crazy!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Reduce intensity of chemical manufacturing of paper, concrete, and cement",
+        "deltas": {
+          "tech.manufacturing.other": 5
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Reduce intensity of chemical manufacturing of iron, steel, and aluminum",
+        "deltas": {
+          "tech.manufacturing.other": 10
+        }
+      }, 
+      {
+        "will": -50, 
+        "title": "Require highly efficient recycled materials",
+        "deltas": {
+          "tech.manufacturing.other": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Keep On Truckin'", 
+    "desc": "Looking over a map of the world's major trading routes, your transportation minister informs you that shipping of goods might be an easy way to cut down on climate change.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Breaker, breaker, we're gonna boogie!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Require highly efficient vehicles, limit road access",
+        "deltas": {
+          "tech.transport.efficiency": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Require highly efficient hybrid vehicles",
+        "deltas": {
+          "tech.manufacturing.other": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Require 100% hydrogen & electric transport",
+        "deltas": {
+          "tech.manufacturing.other": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Adjusting the Skyline", 
+    "desc": "Your housing minister gives you a ride on a blimp to gaze down upon on your capital city. Once you're up there, he brings you grim news : something must be done about the buildings.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "We have the best buildings. Just terrific. The best!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Require upgraded heating and cooling systems",
+        "deltas": {
+          "tech.buildings.temp": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Retrofit all buildings HVACs to high efficiency at great cost",
+        "deltas": {
+          "tech.buildings.temp": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Require all new construction is 100% green buildings",
+        "deltas": {
+          "tech.buildings.temp": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Cap and Trade Floor Fight", 
+    "desc": "The congress is in a stalemate and close to filibustered shut down because of new rules released by the environmental ministry that attempt to capture heavy pollution", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Can't we all get along? There's no need to fight."
+      }, 
+      {
+        "will": -10, 
+        "title": "Negotiate carbon capture on limited industry",
+        "deltas": {
+          "tech.ccs.manufacturing": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Negotiate carbon capture on manufactory",
+        "deltas": {
+          "tech.ccs.manufacturing": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Negotiate carbon capture on power plants",
+        "deltas": {
+          "tech.ccs.manufacturing": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Bioenergy Emerges As New Hope", 
+    "desc": "Bioenergy is a renewable energy made from material derived from biological materials like wood, algae, and manure, your scientists tell you. The cable news programs are mocking you. But it's just so crazy, it just might work.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "There's no way I'm gonna burn poop and mold. That's just silly."
+      }, 
+      {
+        "will": -10, 
+        "title": "Increase biofuel production by 25%",
+        "deltas": {
+          "fuels.bio.yields": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Increase biofuel production by 50%",
+        "deltas": {
+          "fuels.bio.yields": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Increase biofuel production by 100%",
+        "deltas": {
+          "fuels.bio.yields": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "President Convenes Energy Summit", 
+    "desc": "In the back room of the summit, an oil executive corners you and tells you quietly that he personally is all for doing something about climate change, it's just the jobs he's really worried about. Including his own.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Drill, baby, drill!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Decrease fossil fuel production by 25%",
+        "deltas": {
+          "fuels.fossil.petro": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Decrease fossil fuel production by 50%",
+        "deltas": {
+          "fuels.fossil.petro": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Decrease fossil fuel production by 100%",
+        "deltas": {
+          "fuels.fossil.petro": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Sit-In for Solar", 
+    "desc": "You walk into your office to find a group of people sitting around and chanting about the sun. The leader pushes you to consider shifting the energy economy to renewables.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Get off of my lawn!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Increase Storage and Demand Efficiency",
+        "deltas": {
+          "fuels.renewables.storage": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Increase renewable energy by 10%",
+        "deltas": {
+          "fuels.renewables.storage": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Increase renewable energy by 25%",
+        "deltas": {
+          "fuels.renewables.storage": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Is Nuclear The Solution?", 
+    "desc": "Your energy minister brings you a binder full of facts and figures that make it clear : nuclear is one of the cleanest and most viable solutions right now. But it sure isn't popular.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Uh, have you heard of the term 'meltdown'?"
+      }, 
+      {
+        "will": -10, 
+        "title": "Increase nuclear energy by 10%",
+        "deltas": {
+          "fuels.nuclear": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Increase nuclear energy by 15%",
+        "deltas": {
+          "fuels.nuclear": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Increase nuclear energy by 20%",
+        "deltas": {
+          "fuels.nuclear": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Food Production Questioned", 
+    "desc": "On a visit to a farm, a farmer gives you the straight dope: there's ways food production can help climate change, too.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Our food production is just perfect!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Decrease food and water waste",
+        "deltas": {
+          "land.food.waste": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Increase livestock efficiency with small land area per animal",
+        "deltas": {
+          "land.food.waste": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Utilize GMOs to increase crop yields",
+        "deltas": {
+          "land.food.waste": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "This Land Is Our Land", 
+    "desc": "Land use has been a patchwork of historical decisions and adjustments and fixes over the centuries, but fighting this fight will require a judicious and thought approach to how we use our space.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "Land is private, and not for public sacrifice"
+      }, 
+      {
+        "will": -10, 
+        "title": "Smarter land use techniques and permitting",
+        "deltas": {
+          "land.use.efficiency": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Dedicate large amount of land to biocrops",
+        "deltas": {
+          "land.use.efficiency": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Reduce exurbs, return much of land to reforestation",
+        "deltas": {
+          "land.use.efficiency": 15
+        }
+      }
+    ]
+  }, 
+  {
+    "type": "turn",
+    "title": "Demographics", 
+    "desc": "During a cabinet meeting, someone finally says what no one else has, yet: we're going to have to talk population control.", 
+    "choices": [
+      {
+        "will": 0, 
+        "title": "We can't tell people how to raise their families!"
+      }, 
+      {
+        "will": -10, 
+        "title": "Reduce rural and suburban infrastructure, increase urban density",
+        "deltas": {
+          "demographics.urbanization": 5
+        }
+      }, 
+      {
+        "will": -20, 
+        "title": "Limit couples to 2 children per family",
+        "deltas": {
+          "demographics.globalpop": 10
+        }
+      }, 
+      {
+        "will": -30, 
+        "title": "Limit couples to 1 child per family",
+        "deltas": {
+          "demographics.globalpop": 15
+        }
+      }
+    ]
+  },
+  {
+    "type": "random",
+    "title": "Bayou City begins to flood permanently", 
+    "desc": "The historic city on the Gulf stops having a 'Dry' season, and the residents there begin to trade their cars for rowboats.",
+    "choices": [{
+      "title": "Continue",
+      "will": 10
+    }]
+  }, 
+  {
+    "type": "random",
+    "title": "Prominent Climate Scientist arrested on tax evasion", 
+    "desc": "The crime has nothing to do with his research, but it's a blow to the cause and his increasingly desperate pleas to the public",
+    "choices": [{
+      "title": "Continue",
+      "will": -10
+    }]
+  }, 
+  {
+    "type": "random",
+    "title": "Hottest Summer on Record", 
+    "desc": "Brownouts blanket the nations as Urthians desperately try to cool themselves from the sweltering heat. It increases public awareness-- but also uses more energy. D'oh.",
+    "choices": [{
+      "title": "Continue",
+      "will": 5
+    }]
+  }, 
+  {
+    "type": "random",
+    "title": "Coldest Winter on Record", 
+    "desc": "A Senator holds up a snowball in Congress to prove that all of this climate change stuff is a hoax. He doesn't understand that climate change means more extreme weather, not just hotter weather. But the public falls for it.",
+    "choices": [{
+      "title": "Continue",
+      "will": 5
+    }]
+  }, 
+  {
+    "type": "random",
+    "title": "Drought!", 
+    "desc": "Massive drought across much of breadbasket leads to economic downturn. Right when you need it the most, the public turns against you.",
+    "choices": [{
+      "title": "Continue",
+      "will": -10
+    }]
+  },
+  {
+    "type": "public",
+    "title": "Climate Summit", 
+    "desc": "The player convenes all the leader of Urth together and makes a showy and urgent show of worldwide unification against this global threat. The Urthians get a little misty eyed and throw public will your way.",
+    "choices": [{
+      "title": "Continue",
+      "will": 20
+    }]
+  }, 
+  {
+    "type": "public",
+    "title": "An Uncomfortable Thingie", 
+    "desc": "Former President Alf Gorp makes a moving documentary about the warming planet, and Urthians go to see it in droves.",
+    "choices": [{
+      "title": "Continue",
+      "will": 20
+    }]
+  }
+]

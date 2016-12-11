@@ -13,7 +13,7 @@ module.exports = {
     app.use('/static', staticPath);
     app.use('/dist', distPath);
     app.get('/', indexHandler);
-    app.get('/play/*', indexHandler);
+    app.get('/play*', indexHandler);
 
     return app;
   }

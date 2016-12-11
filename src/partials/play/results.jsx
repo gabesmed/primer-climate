@@ -1,11 +1,13 @@
 import React from 'react';
 
-export default function PlayResults({ encoded, results }) {
+import LeverUtils from '../../utils/lever-utils';
+
+export default function PlayResults({ pathway, results }) {
   if (!results) {
     return <div>No results.</div>;
   }
   if (results.state === 'requested') {
-    return <div>Loading...</div>;
+    return <div>Loading...<br />&nbsp;<br />&nbsp;</div>;
   }
   const data = results.data;
   const emissions = data.cumulativeEmissions.toFixed(1);
@@ -16,11 +18,12 @@ export default function PlayResults({ encoded, results }) {
   } else {
     estimate = 'Catastrophic warming';
   }
+  const pathwayEncoded = LeverUtils.encode(pathway);
   return (
     <div>
       <div>Cumulative Emissions: {emissions} Gigatons</div>
       <div>Global Mean Temp: {estimate}</div>
-      <div><a href={`http://tool.globalcalculator.org/globcalc.html?levers=${encoded}/dashboard/en`}>
+      <div><a href={`http://tool.globalcalculator.org/globcalc.html?levers=${pathwayEncoded}/dashboard/en`}>
         Open scenario in calculator
       </a>
       </div>
@@ -29,6 +32,6 @@ export default function PlayResults({ encoded, results }) {
 }
 
 PlayResults.propTypes = {
-  encoded: React.PropTypes.string,
+  pathway: React.PropTypes.object,
   results: React.PropTypes.object
 };
